@@ -8,6 +8,7 @@ import BrandFaqs from '../../../components/BrandFaqs'
 import BrandReview from '../../../components/BrandReview'
 import PlatformHeroTwo from '../../../components/PlatformHeroTwo'
 import PlatformCategoriesTwo from '../../../components/PlatformCategoriesTwo'
+import PlatformCategoriesPremium from '../../../components/PlatformCategoriesPremium'
 import PlatformFeaturedProductsTwo from '../../../components/PlatformFeaturedProductsTwo'
 import PlatformExploreTwo from '../../../components/PlatformExploreTwo'
 import BrandReviewTwo from '../../../components/BrandReviewTwo'
@@ -36,6 +37,7 @@ import BrandReviewFour from '../../../components/BrandReviewFour'
 import BrandFaqsFour from '../../../components/BrandFaqsFour'
 import PlatformCategoriesPremuim from '../../../components/PlatformCategoriesLuxury'
 import PlatformCategoriesLuxury from '../../../components/PlatformCategoriesLuxury'
+import PlatformHeroPremium from '../../../components/PlatformHeroPremium'
 
 export default function Home({ settings, isCustomDomain }) {
     const style = settings?.layout?.homePageStyle
@@ -49,7 +51,8 @@ export default function Home({ settings, isCustomDomain }) {
         style2: PlatformHeroTwo,
         style3: PlatformHeroThree,
         jewellery: PlatformHeroJewellery,
-        fashion: PlatformHeroFashion
+        fashion: PlatformHeroFashion,
+        premium:PlatformHeroPremium
     };
 
     const heroDoubleComponents = {
@@ -62,7 +65,8 @@ export default function Home({ settings, isCustomDomain }) {
         style3: PlatformCategoriesThree,
         jewellery: PlatformCategoriesJewellery,
         fashion: PlatformCategoriesFashion,
-        premuim: PlatformCategoriesLuxury,
+        premium: PlatformCategoriesPremium,
+        
     };
 
     const featuresProductsComponents = {
