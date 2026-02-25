@@ -24,6 +24,7 @@ import PlatformHeroJewellery from '../../../components/PlatformHeroJewellery'
 import PlatformHeroDouble from '../../../components/PlatformHeroDouble'
 import PlatformCategoriesJewellery from '../../../components/PlatformCategoriesJewellery'
 import PlatformFeaturedProductsJewellery from '../../../components/PlatformFeaturedProductsJewellery'
+import PlatformFeaturedProductsPremium from '../../../components/PlatformFeaturedProductsPremium'
 import PlatformRecentProductsJewellery from '../../../components/PlatformRecentProductsJewellery'
 import PlatformExploreDouble from '../../../components/PlatformExploreDouble'
 import PlatformImageGallery from '../../../components/PlatformImageGallery'
@@ -75,6 +76,7 @@ export default function Home({ settings, isCustomDomain }) {
         style3: PlatformFeaturedProductsThree,
         jewellery: PlatformFeaturedProductsJewellery,
         fashion: PlatformFeaturedProductsFashion,
+        premium: PlatformFeaturedProductsPremium
     };
 
     const recentProductsComponents = {

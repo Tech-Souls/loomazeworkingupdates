@@ -99,20 +99,20 @@ export default function PlatformCategoriesPremium({
                       target="_blank"
                       className="block cursor-pointer"
                     >
-                     <div className="group overflow-hidden hover:shadow-lg shadow-gray-600 transition-scale duration-200 relative h-[30vh] lg:h-[60vh] rounded-lg">
-  <img
-    src={`${cat.imageURL}`}
-    alt={cat.name}
-    loading="lazy"
-    className="w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] group-hover:scale-105"
-  />
+                      <div className="group overflow-hidden hover:shadow-lg shadow-gray-600 transition-scale duration-200 relative h-[30vh] lg:h-[60vh] rounded-lg">
+                        <img
+                          src={`${cat.imageURL}`}
+                          alt={cat.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] group-hover:scale-105"
+                        />
 
-  {settings.layout.showCategoriesText && (
-    <h3 className="text-sm transition-all h-10 duration-300 w-full left-0 font-bold py-2 text-center text-gray-900 bg-gray-200 capitalize bottom-0 absolute sm:text-base md:text-xl group-hover:rounded-t-3xl">
-      {cat.name}
-    </h3>
-  )}
-</div>
+                        {settings.layout.showCategoriesText && (
+                          <h3 className="text-sm transition-all h-10 duration-300 w-full left-0 font-bold py-2 text-center text-gray-900 bg-gray-200 capitalize bottom-0 absolute sm:text-base md:text-xl group-hover:rounded-t-3xl">
+                            {cat.name}
+                          </h3>
+                        )}
+                      </div>
                     </a>
                   </div>
                 </SwiperSlide>
