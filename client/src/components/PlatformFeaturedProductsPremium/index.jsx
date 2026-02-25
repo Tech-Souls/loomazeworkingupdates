@@ -59,15 +59,15 @@ export default function PlatformFeaturedProductsPremium({ storeSettings, isCusto
                     {/* Prev Button (Same UI) */}
                     <button
                          ref={prevRef}
-                        className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 bg-[var(--pr)] text-white p-2 md:p-3 shadow-lg z-20"
+                        className="absolute left-2 hover:bg-white hover:border border-black hover:text-black transition-all duration-300 hover:scale-101 lg:left-0 top-1/2 -translate-y-1/2 bg-[var(--pr)] rounded-full text-white p-2 md:p-3 shadow-lg z-20"
                     >
-                        <ChevronLeft className="w-3 h-3 md:w-5 md:h-5" />
+                        <ChevronLeft  className="w-5 h-5 md:w-5 md:h-5" />
                     </button>
 
                     {/* Next Button */}
                     <button
                         ref={nextRef}
-                        className="absolute right-2 lg:right-0 top-1/2 -translate-y-1/2 bg-[var(--pr)] text-white p-2 md:p-3 shadow-lg z-20"
+                        className="absolute right-2 lg:right-0 hover:scale-101 rounded-full hover:bg-white hover:border border-black hover:text-black top-1/2 -translate-y-1/2 bg-[var(--pr)] transition-all duration-300 text-white p-2 md:p-3 shadow-lg z-20"
                     >
                         <ChevronRight className="w-3 h-3 md:w-5 md:h-5" />
                     </button>
