@@ -1,0 +1,35 @@
+export const pricingPlans = [
+    {
+        id: 1,
+        name: "Basic",
+        label: "Start selling online in minutes",
+        monthly: 2000,
+        yearly: 18000,
+        transactionFee: "No setup fees · Cancel anytime",
+        features: [            "Unlimited products",            "Cash on Delivery (COD) only",            "Quick 'Sell Fast' setup",            "Platform subdomain (no custom domain)",            "Support response within a few hours"],
+        popular: false,
+        cta: "Start Selling",
+    },
+    {
+        id: 2,
+        name: "Grow",
+        label: "Everything you need to build a real brand",
+        monthly: 3000,
+        yearly: 36000,
+        transactionFee: "No setup fees · Cancel anytime",
+        features: ["COD", "Connect your personal domain", "Professional brand-style storefront", "24-hour support response", "Unlock all themes", "Basic SEO features"],
+        popular: true,
+        cta: "Start Growing",
+    },
+    {
+        id: 3,
+        name: "Advanced",
+        label: "Built for serious brands that want full control",
+        monthly: 20000,
+        yearly: 180000,
+        transactionFee: "No setup fees · Cancel anytime",
+        features: ["Priority / advanced support", "Custom website design & layout", "Advanced brand-specific customization"],
+        popular: false,
+        cta: "Go Pro"
+    },
+];

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" id="backend" viewBox="0 0 50.2 36" style="enable-background:new 0 0 57.3 35;" xml:space="preserve">
+	 	  <title>Extra Backend Functionalities</title>
+             <g id="Ellipse_6_copy" data-name="Ellipse 6 copy">
+                 <g style="opacity:0">
+                     <circle cx="25.1" cy="18" r="17.5" style="fill:#f3f3f3"/>
+                 </g>
+                 <path d="M25.1,36a18,18,0,1,1,18-18A18.05,18.05,0,0,1,25.1,36Zm0-35a17,17,0,1,0,17,17A17,17,0,0,0,25.1,1Z" style="fill:#E95026"/>
+             </g>
+             <g id="Ellipse_6_copy_2" data-name="Ellipse 6 copy 2">
+                 <g style="opacity:0">
+                     <circle cx="25.1" cy="18" r="8.5" style="fill:#f3f3f3"/>
+                 </g>
+                 <path d="M25.1,27a9,9,0,1,1,9-9A9,9,0,0,1,25.1,27Zm0-17a8,8,0,1,0,8,8A8,8,0,0,0,25.1,10Z" style="fill:#E95026"/>
+             </g>
+             <g style="opacity:0">
+                 <circle cx="4.1" cy="5" r="3.5" style="fill:#174665"/>
+             </g>
+             <path d="M4.1,9a4,4,0,1,1,4-4A4,4,0,0,1,4.1,9Zm0-7a3,3,0,0,0-3,3,3,3,0,0,0,3,3,3,3,0,0,0,3-3A3,3,0,0,0,4.1,2Z" style="fill:#E95026"/>
+             <path d="M7.1,5.9,10.6,8l-.3.7-3.5-2Z" style="fill:#E95026;fill-rule:evenodd"/>
+             <g style="opacity:0">
+                 <circle cx="4" cy="30.9" r="3.5" style="fill:#174665"/>
+             </g>
+             <path d="M4,34.9a4,4,0,1,1,4-4A4,4,0,0,1,4,34.9Zm0-7a3,3,0,0,0,0,6,3,3,0,0,0,0-6Z" style="fill:#E95026"/>
+             <path d="M6.7,29.2l3.5-2.1.3.7L7,30Z" style="fill:#E95026;fill-rule:evenodd"/>
+             <g style="opacity:0">
+                 <circle cx="46" cy="5" r="3.5" style="fill:#174665"/>
+             </g>
+             <path d="M46,9a4,4,0,1,1,4-4A4,4,0,0,1,46,9Zm0-7a3,3,0,0,0-3,3,3,3,0,0,0,6,0A3,3,0,0,0,46,2Z" style="fill:#E95026"/>
+             <path d="M43.4,6.7,39.9,8.8l-.3-.7L43,5.9Z" style="fill:#E95026;fill-rule:evenodd"/>
+             <g style="opacity:0">
+                 <circle cx="46.2" cy="30.9" r="3.5" style="fill:#174665"/>
+             </g>
+             <path d="M46.2,34.9a4,4,0,1,1,4-4A4,4,0,0,1,46.2,34.9Zm0-7a3,3,0,1,0,3,3A3,3,0,0,0,46.2,27.9Z" style="fill:#E95026"/>
+             <path d="M43.2,30l-3.5-2.1.3-.7,3.5,2.1Z" style="fill:#E95026;fill-rule:evenodd"/>
+</svg>

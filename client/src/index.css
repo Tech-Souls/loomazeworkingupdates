@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url(./assets/fonts/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url(./assets/fonts/Poppins-Regular.ttf);
+}
+
+@theme{
+    --color-primary: #F36734;
+    --color-primary-light: #e95026;
+    --color-secondary: #0795E6;
+
+}
+:root {
+    /* --primary: #EE3E5A; */
+    --primary: #F36734;
+    --secondary: #0795E6;
+    --pr: #0795E6;
+    --sec: #000;
+    --userPr: #97bde8;
+    --text: #333;
+}
+
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins-Regular', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Poppins-Bold', sans-serif;
+}
+
+input {
+    padding: 16px;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.25s ease-in-out;
+}
+
+input:focus {
+    border: 1px solid var(--secondary);
+}
+
+button {
+    cursor: pointer;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.shad {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 30px;
+}
+
+.join-as-seller-hero {
+    background-image: url('./assets/images/join-as-seller-hero.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.clockwise-loader {
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 0;
+
+}
+
+.clockwise-loader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    pointer-events: none;
+    box-sizing: border-box;
+    z-index: -1;
+    transform: rotate(0deg);
+    transition:
+        border-top-color 0.14s linear 0s,
+        border-right-color 0.14s linear 0.14s,
+        border-bottom-color 0.14s linear 0.28s,
+        border-left-color 0.14s linear 0.42s,
+        transform 0.45s cubic-bezier(.2, .8, .2, 1);
+}
+
+.clockwise-loader:hover::before {
+    border-top-color: var(--secondary);
+    border-right-color: var(--secondary);
+    border-bottom-color: var(--secondary);
+    border-left-color: var(--secondary);
+    transform: rotate(270deg);
+}
+
+/* New Work */
+
+.pricing-card .ant-card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.pricing-segment .ant-segmented-item-selected {
+  background: #F36734 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.pricing-segment .ant-segmented-group {
+  gap:6px;
+}
+
+@layer base {
+  html,
+  body {
+    @apply overflow-x-hidden;
+  }
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}.

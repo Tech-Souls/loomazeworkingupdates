@@ -1,0 +1,94 @@
+.seller-container {
+    max-width: 1400px;
+    padding: 32px 32px;
+    margin: 0 auto;
+}
+
+.seller-sider {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    background-color: #e6f0ff;
+    transition: all 0.3s ease;
+}
+
+.seller-sider-links {
+    scrollbar-width: 1px;
+    scrollbar-color: #43aaea transparent;
+}
+
+.seller-sider-links::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.seller-sider-links::-webkit-scrollbar-thumb {
+    background: #43aaea;
+    border-radius: 1px;
+}
+
+.seller-sider-links::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+.seller-sider-open {
+    width: 65px;
+}
+
+.seller-sider-closed {
+    width: 220px;
+}
+
+.seller-sider-arrow {
+    position: absolute;
+    top: 12px;
+    right: -20px;
+}
+
+.seller-sider-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    transition: all 0.2s ease-out;
+}
+
+.seller-sider-link-active {
+    background-color: rgba(195, 195, 195, 0.15)
+}
+
+.seller-content {
+    width: 100%;
+    min-height: 100dvh;
+    background-color: #f8f8f8;
+    transition: margin-left 0.3s ease;
+}
+
+.light-shad {
+    box-shadow: 0px 0px 30px #f0f4f9;
+}
+
+@media screen and (max-width: 799px) {
+    .seller-container {
+        padding: 24px 20px;
+    }
+}
+
+@media screen and (max-width: 549px) {
+    .seller-container {
+        padding: 20px 12px;
+    }
+
+    .seller-sider-open {
+        width: 50px;
+    }
+
+    .seller-sider-arrow {
+        padding: 8px;
+        top: 12px;
+        right: -16px;
+    }
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" id="api" viewBox="0 0 57 36" style="enable-background:new 0 0 57.3 35;" xml:space="preserve">
+	 	 <title>3rd Party API Integration </title>
+             <g style="opacity:0">
+                 <circle cx="18" cy="18" r="17.5" style="fill:#174665"/>
+             </g>
+             <path d="M18.5,36.5a18,18,0,1,1,18-18A18.05,18.05,0,0,1,18.5,36.5Zm0-35a17,17,0,1,0,17,17A17,17,0,0,0,18.5,1.5Z" transform="translate(-0.5 -0.5)" style="fill:#E95026"/>
+             <g id="Ellipse_6_copy" data-name="Ellipse 6 copy">
+                 <g style="opacity:0">
+                     <circle cx="39" cy="18" r="17.5" style="fill:#174665"/>
+                 </g>
+                 <path d="M39.5,36.5a18,18,0,1,1,18-18A18.05,18.05,0,0,1,39.5,36.5Zm0-35a17,17,0,1,0,17,17A17,17,0,0,0,39.5,1.5Z" transform="translate(-0.5 -0.5)" style="fill:#E95026"/>
+             </g>
+             <rect x="26.5" y="13.5" width="4" height="2" style="fill:#E95026"/>
+             <g id="Rectangle_798_copy" data-name="Rectangle 798 copy">
+                 <rect x="26.5" y="17.5" width="4" height="2" style="fill:#E95026"/>
+             </g>
+             <g id="Rectangle_798_copy_2" data-name="Rectangle 798 copy 2">
+                 <rect x="26.5" y="21.5" width="4" height="2" style="fill:#E95026"/>
+             </g>
+</svg>

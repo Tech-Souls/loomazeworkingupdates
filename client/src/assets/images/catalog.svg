@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" id="catalog" viewBox="0 0 31 38" style="enable-background:new 0 0 57.3 35;" xml:space="preserve">
+	 <title>Product Catalog System </title>
+
+             <g>
+                 <rect x="9" y="1" fill="#FFFFFF" width="21" height="28"/>
+                 <path fill="#E95026" d="M30,30H9c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1h21c0.6,0,1,0.4,1,1v28C31,29.6,30.6,30,30,30z M10,28h19V2H10   V28z"/>
+             </g>
+             <g id="Rectangle_809_copy_2">
+                 <rect x="5" y="5" fill="#FFFFFF" width="21" height="28"/>
+                 <path fill="#E95026" d="M26,34H5c-0.6,0-1-0.4-1-1V5c0-0.6,0.4-1,1-1h21c0.6,0,1,0.4,1,1v28C27,33.6,26.6,34,26,34z M6,32h19V6H6   V32z"/>
+             </g>
+             <g id="Rectangle_809_copy">
+                 <rect x="1" y="9" fill="#FFFFFF" width="21" height="28"/>
+                 <path fill="#E95026" d="M22,38H1c-0.6,0-1-0.4-1-1V9c0-0.6,0.4-1,1-1h21c0.6,0,1,0.4,1,1v28C23,37.6,22.6,38,22,38z M2,36h19V10H2   V36z"/>
+             </g>
+             <g>
+                 <rect x="5" y="13" fill="#E95026" width="13" height="4"/>
+             </g>
+             <g id="Rectangle_810_copy">
+                 <rect x="5" y="31" fill="#E95026" width="13" height="2"/>
+             </g>
+             <g id="Rectangle_810_copy_2">
+                 <rect x="5" y="27" fill="#E95026" width="13" height="2"/>
+             </g>
+             <g id="Rectangle_810_copy_3">
+                 <rect x="5" y="23" fill="#E95026" width="13" height="2"/>
+             </g>
+</svg>

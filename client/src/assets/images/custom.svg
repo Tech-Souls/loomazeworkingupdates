@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" id="custom" viewBox="0 0 57 37" style="enable-background:new 0 0 57.3 35;" xml:space="preserve">
+	 	 <title>Custom Feature Integration</title>
+             <g style="opacity:0">
+                 <rect x="0.5" y="0.5" width="16" height="16" style="fill:#174665"/>
+             </g>
+             <path d="M17,17H0V0H17ZM1,16H16V1H1Z" style="fill:#E95026"/>
+             <g id="Rectangle_797_copy" data-name="Rectangle 797 copy">
+                 <g style="opacity:0">
+                     <rect x="0.5" y="20.5" width="16" height="16" style="fill:#174665"/>
+                 </g>
+                 <path d="M17,37H0V20H17ZM1,36H16V21H1Z" style="fill:#E95026"/>
+             </g>
+             <g id="Rectangle_797_copy_2" data-name="Rectangle 797 copy 2">
+                 <g style="opacity:0">
+                     <rect x="20.5" y="20.5" width="16" height="16" style="fill:#174665"/>
+                 </g>
+                 <path d="M37,37H20V20H37ZM21,36H36V21H21Z" style="fill:#E95026"/>
+             </g>
+             <g id="Rectangle_797_copy_3" data-name="Rectangle 797 copy 3">
+                 <g style="opacity:0">
+                     <rect x="40.5" y="20.5" width="16" height="16" style="fill:#174665"/>
+                 </g>
+                 <path d="M57,37H40V20H57ZM41,36H56V21H41Z" style="fill:#E95026"/>
+             </g>
+             <g id="Rectangle_797_copy_4" data-name="Rectangle 797 copy 4">
+                 <g style="opacity:0">
+                     <rect x="20.5" y="0.5" width="16" height="16" style="fill:#174665"/>
+                 </g>
+                 <path d="M37,17H20V0H37ZM21,16H36V1H21Z" style="fill:#E95026"/>
+             </g>
+             <g id="Rectangle_797_copy_5" data-name="Rectangle 797 copy 5">
+                 <g style="opacity:0">
+                     <rect x="40.5" y="0.5" width="16" height="16" style="fill:#174665"/>
+                 </g>
+                 <path d="M57,17H40V0H57ZM41,16H56V1H41Z" style="fill:#E95026"/>
+             </g>
+             <g id="Forma_1" data-name="Forma 1">
+                 <path d="M28.3,11.1a1.09,1.09,0,0,1-1.5,0L24.5,8.8A1.06,1.06,0,0,1,26,7.3h0l1.4,1.4a.3.3,0,0,0,.4,0l3.7-3.8A1.06,1.06,0,0,1,33,6.4h0Z" style="fill:#E95026;fill-rule:evenodd"/>
+             </g>
+</svg>
