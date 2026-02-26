@@ -39,6 +39,8 @@ import BrandFaqsFour from '../../../components/BrandFaqsFour'
 import PlatformCategoriesPremuim from '../../../components/PlatformCategoriesLuxury'
 import PlatformCategoriesLuxury from '../../../components/PlatformCategoriesLuxury'
 import PlatformHeroPremium from '../../../components/PlatformHeroPremium'
+import PlatformRecentProductsPremium from '../../../components/PlatformRecentProductsPremium'
+import PlatformExplorePremium from '../../../components/PlatformExplorePremium'
 
 export default function Home({ settings, isCustomDomain }) {
     const style = settings?.layout?.homePageStyle
@@ -85,6 +87,7 @@ export default function Home({ settings, isCustomDomain }) {
         style3: PlatformRecentProductsThree,
         jewellery: PlatformRecentProductsJewellery,
         fashion: PlatformRecentProductsFashion,
+        premium:PlatformRecentProductsPremium,
     };
 
     const exploreComponents = {
@@ -93,6 +96,7 @@ export default function Home({ settings, isCustomDomain }) {
         style3: PlatformExploreThree,
         jewellery: PlatformExploreDouble,
         fashion: PlatformExploreDouble,
+        premium : PlatformExplorePremium,
     };
 
     const imageGalleryComponents = {
