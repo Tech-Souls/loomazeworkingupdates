@@ -1,54 +1,108 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function PlatformHeroTopFashion() {
+import heroWebImg from "../../assets/images/hero-img.webp";
+import heroRayImg from "../../assets/images/heroImg-rayban.webp";
+import heroShoesImg from "../../assets/images/heroImg-shoes.webp";
+import heroCamImg from "../../assets/images/heroImg-camera.webp";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const NextArrow = ({ onClick }) => (
+    <button onClick={onClick} className="absolute top-1/2 right-3 z-10 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 shadow-md transition-all duration-300">
+        <ChevronRight size={28} />
+    </button>
+);
+
+const PrevArrow = ({ onClick }) => (
+    <button onClick={onClick} className="absolute left-3 top-1/2 z-10 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 shadow-md transition-all duration-300">
+        <ChevronLeft size={28} />
+    </button>
+);
+
+export default function PlatformHeroTopFashion({ settings, isCustomDomain }) {
+    const sliderSettings = {
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        speed: 900,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        pauseOnHover: false,
+    };
+
+    const dummy = [
+        { image: heroRayImg,   ctaLink: isCustomDomain ? `/` : `/brand/${settings?.brandSlug}` },
+        { image: heroWebImg,   ctaLink: isCustomDomain ? `/` : `/brand/${settings?.brandSlug}` },
+        { image: heroShoesImg, ctaLink: isCustomDomain ? `/` : `/brand/${settings?.brandSlug}` },
+        { image: heroCamImg,   ctaLink: isCustomDomain ? `/` : `/brand/${settings?.brandSlug}` },
+    ];
+
+    // ✅ Only treat DB slides as valid if they actually have a real image value
+    const getValidDBSlides = (s) => {
+        const dbSlides = s?.content?.heroSlider || []
+        return dbSlides.filter(slide => slide?.image && slide.image !== "null")
+    }
+
+    const resolveSlides = (s) => {
+        const valid = getValidDBSlides(s)
+        return valid.length > 0 ? { slides: valid, usingDB: true } : { slides: dummy, usingDB: false }
+    }
+
+    const initial = resolveSlides(settings)
+    const [slides, setSlides] = useState(initial.slides)
+    const [usingDB, setUsingDB] = useState(initial.usingDB)
+
+    useEffect(() => {
+        const { slides: resolved, usingDB: isDB } = resolveSlides(settings)
+        setSlides(resolved)
+        setUsingDB(isDB)
+    }, [settings])
+
+    // For DB images prepend VITE_HOST if not already absolute
+    const getImageSrc = (slide) => {
+        if (!usingDB) return slide.image
+        const img = slide.image || ""
+        if (img.startsWith("http://") || img.startsWith("https://")) return img
+        const host = (import.meta.env.VITE_HOST || "").replace(/\/$/, "")
+        const path = img.startsWith("/") ? img : `/${img}`
+        return `${host}${path}`
+    }
+
+    if (!slides.length) return null
+
     return (
-        <>
-            <div className='flex justify-between bg-[#F9EDE1] py-6 mb-3 overflow-x-auto'>
-                <div className='flex-1 flex flex-col justify-center items-center gap-1 sm:gap-3 px-3 sm:px-6 border-r'>
-                    <h2 className='text-xl sm:text-2xl text-center whitespace-nowrap'>ENJOY HUGE DISCOUNTS</h2>
-                    <p className='text-center text-sm text-[#202020] whitespace-nowrap'>Get your favouite products at best price.</p>
-                </div>
-
-                <div className='flex-1 flex flex-col justify-center items-center gap-1 sm:gap-3 px-3 sm:px-6'>
-                    <h2 className='text-xl sm:text-2xl text-center whitespace-nowrap'>AMAZING VALUE EVERY DAY</h2>
-                    <p className='text-center text-sm text-[#202020] whitespace-nowrap'>Items you love at prices that fit your budget.</p>
-                </div>
-            </div>
-
-            <div className='flex justify-between bg-[#EBEBEB] py-5 overflow-x-auto'>
-                <div className='flex flex-1 justify-center items-center gap-3 px-4 border-r'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 26 25" fill="none">
-                        <path d="M23.5625 6.9H21.5668C22.0492 6.23 22.3438 5.405 22.3438 4.5C22.3438 2.295 20.6477 0.5 18.5605 0.5C16.4125 0.5 15.1684 1.77 13 5.29C10.8316 1.77 9.5875 0.5 7.43945 0.5C5.35234 0.5 3.65625 2.295 3.65625 4.5C3.65625 5.405 3.95078 6.23 4.4332 6.9H2.4375C1.0918 6.9 0 7.975 0 9.3V14.1C0 14.54 0.365625 14.9 0.8125 14.9H1.625V22.1C1.625 23.425 2.7168 24.5 4.0625 24.5H21.9375C23.2832 24.5 24.375 23.425 24.375 22.1V14.9H25.1875C25.6344 14.9 26 14.54 26 14.1V9.3C26 7.975 24.9082 6.9 23.5625 6.9ZM14.0258 6.72C16.5395 2.555 17.3773 2.1 18.5605 2.1C19.7488 2.1 20.7188 3.175 20.7188 4.5C20.7188 5.825 19.7488 6.9 18.5605 6.9H13.9141L14.0258 6.72ZM7.43945 2.1C8.62773 2.1 9.46055 2.555 11.9742 6.72L12.0809 6.9H7.43437C6.24609 6.9 5.27617 5.825 5.27617 4.5C5.28125 3.175 6.25117 2.1 7.43945 2.1ZM9.75 22.9H4.0625C3.61562 22.9 3.25 22.54 3.25 22.1V14.9H9.75V22.9ZM9.75 13.3H1.625V9.3C1.625 8.86 1.99063 8.5 2.4375 8.5H9.75V13.3ZM14.625 22.9H11.375V8.5H14.625V22.9ZM22.75 22.1C22.75 22.54 22.3844 22.9 21.9375 22.9H16.25V14.9H22.75V22.1ZM24.375 13.3H16.25V8.5H23.5625C24.0094 8.5 24.375 8.86 24.375 9.3V13.3Z" fill="#232323"></path>
-                    </svg>
-                    <h2 className='text-sm sm:text-lg text-center text-[#232323] whitespace-nowrap'>FREE GIFT WRAPPING</h2>
-                </div>
-
-
-                <div className='flex flex-1 justify-center items-center gap-3 px-4 border-r'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                        <path d="M24.4946 8.21429C24.4946 7.64643 24.3554 7.08929 24.0875 6.59107L21.4571 1.66786C21.2268 0.971429 20.5732 0.5 19.8339 0.5H5.16607C4.42679 0.5 3.77321 0.971429 3.5375 1.67321L0.907143 6.59643C0.639286 7.09464 0.5 7.65179 0.5 8.21964C0.505357 11.4607 0.5 22.7857 0.5 22.7857C0.5 23.7339 1.26607 24.5 2.21429 24.5H22.7857C23.7339 24.5 24.5 23.7339 24.5 22.7857C24.5 22.7857 24.4946 11.4607 24.4946 8.21429ZM19.8339 2.21429L22.5554 7.35714H15.8268L15.1839 2.21429H19.8339ZM10.7857 9.07143H14.2143V12.5H10.7857V9.07143ZM13.4589 2.21429L14.1018 7.35714H10.8982L11.5411 2.21429H13.4589ZM5.16607 2.21429H9.81607L9.17321 7.35714H2.44464L5.16607 2.21429ZM2.21429 22.7857C2.21429 22.7857 2.21964 13.0839 2.21964 9.07143H9.07143V12.5C9.07143 13.4482 9.8375 14.2143 10.7857 14.2143H14.2143C15.1625 14.2143 15.9286 13.4482 15.9286 12.5V9.07143H22.7804C22.7804 13.0839 22.7857 22.7857 22.7857 22.7857H2.21429Z" fill="#232323"></path>
-                    </svg>
-                    <h2 className='text-sm sm:text-lg text-center text-[#232323] whitespace-nowrap'>EASY & FREE RETURNS</h2>
-                </div>
-
-                <div className='flex flex-1 justify-center items-center gap-3 px-4 border-r'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                        <path d="M8.28439 17.8211C7.94847 17.8095 7.69866 17.6556 7.56917 17.3447C7.43724 17.0295 7.49221 16.7321 7.73469 16.4872C8.42487 15.7903 9.12055 15.0989 9.81379 14.4056C11.8654 12.354 13.917 10.3024 15.9692 8.2508C16.2673 7.95274 16.6295 7.88433 16.952 8.06085C17.418 8.31554 17.5072 8.91411 17.126 9.30501C16.6686 9.7747 16.2007 10.234 15.7371 10.6976C13.462 12.9721 11.1862 15.2467 8.91228 17.5231C8.73637 17.699 8.54459 17.826 8.28439 17.8211Z" fill="#232323"></path>
-                        <path d="M16.1207 13.5432C17.4082 13.5493 18.4624 14.6072 18.4563 15.888C18.4508 17.1767 17.3814 18.2364 16.0969 18.2273C14.8191 18.2175 13.7509 17.1383 13.7655 15.8715C13.7808 14.5834 14.8387 13.5377 16.1207 13.5432ZM16.1067 16.6643C16.5446 16.668 16.8909 16.3223 16.8903 15.8813C16.8903 15.4433 16.555 15.1093 16.117 15.108C15.6754 15.1074 15.3395 15.4336 15.3334 15.8709C15.3273 16.3113 15.6675 16.66 16.1067 16.6643Z" fill="#232323"></path>
-                        <path d="M9.53894 11.6541C8.25263 11.651 7.20148 10.5974 7.20392 9.31356C7.20637 8.02298 8.26912 6.96389 9.55421 6.97C10.835 6.97671 11.8849 8.03764 11.8813 9.32089C11.877 10.6084 10.824 11.6571 9.53894 11.6541ZM10.3183 9.3215C10.3207 8.8799 9.98236 8.53481 9.54443 8.53359C9.10589 8.53237 8.76325 8.87441 8.76202 9.31356C8.7608 9.74966 9.09124 10.0838 9.52855 10.0893C9.97503 10.0947 10.3158 9.76431 10.3183 9.3215Z" fill="#232323"></path>
-                        <path d="M12.5 2.08803C13.3655 2.08803 14.394 2.54672 14.6854 3.83486C14.9272 4.90495 16.1549 5.41312 17.0821 4.82738C17.4742 4.5794 17.8804 4.45419 18.289 4.45419C19.083 4.45419 19.8617 4.9361 20.2734 5.68247C20.5018 6.09658 20.792 6.93762 20.1726 7.91793C19.5869 8.84509 20.0957 10.0734 21.1651 10.3146C22.4527 10.6054 22.912 11.6339 22.912 12.5C22.912 13.3661 22.4533 14.394 21.1651 14.6854C20.0951 14.9272 19.5869 16.1549 20.1726 17.0821C20.792 18.0624 20.5012 18.9034 20.2734 19.3175C19.8623 20.0639 19.0836 20.5458 18.2896 20.5458C17.881 20.5458 17.4748 20.42 17.0827 20.1726C16.1555 19.5869 14.9272 20.0957 14.686 21.1658C14.3953 22.4533 13.3667 22.9126 12.5006 22.9126C11.6345 22.9126 10.6066 22.4539 10.3152 21.1658C10.0734 20.0957 8.8457 19.5875 7.91854 20.1732C7.52642 20.4212 7.12025 20.5464 6.71164 20.5464C5.91762 20.5464 5.13888 20.0645 4.72721 19.3181C4.49878 18.904 4.20866 18.063 4.82799 17.0827C5.41373 16.1555 4.90495 14.9272 3.83547 14.686C2.54795 14.3953 2.08864 13.3667 2.08864 12.5006C2.08864 11.6345 2.54734 10.6066 3.83547 10.3152C4.90556 10.0734 5.41373 8.8457 4.82799 7.91854C4.20866 6.93823 4.49939 6.09719 4.72721 5.68308C5.13827 4.93671 5.91701 4.4548 6.71102 4.4548C7.11964 4.4548 7.52581 4.58062 7.91793 4.82799C8.84509 5.41373 10.0734 4.90495 10.3146 3.83486C10.6054 2.54734 11.6339 2.08803 12.5 2.08803ZM12.5 0.5C10.8576 0.5 9.21522 1.49496 8.76569 3.48488C8.08528 3.05489 7.38349 2.86616 6.71102 2.86616C3.97534 2.86616 1.73622 5.99641 3.48488 8.76569C-0.494961 9.66476 -0.494961 15.3352 3.48488 16.2343C1.73622 19.0036 3.97534 22.1338 6.71102 22.1338C7.38288 22.1338 8.08528 21.9451 8.76569 21.5151C9.21522 23.505 10.8576 24.5 12.5 24.5C14.1424 24.5 15.7848 23.505 16.2343 21.5151C16.9147 21.9451 17.6165 22.1338 18.289 22.1338C21.0247 22.1338 23.2638 19.0036 21.5151 16.2343C25.495 15.3352 25.495 9.66476 21.5151 8.76569C23.2638 5.99641 21.0247 2.86616 18.289 2.86616C17.6171 2.86616 16.9147 3.05489 16.2343 3.48488C15.7848 1.49496 14.1424 0.5 12.5 0.5Z" fill="#232323"></path>
-                    </svg>
-                    <h2 className='text-sm sm:text-lg text-center text-[#232323] whitespace-nowrap'>STUDENT DISCOUNT</h2>
-                </div>
-
-                <div className='flex flex-1 justify-center items-center gap-3 px-4'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 25" fill="none">
-                        <path d="M21.4884 4.19933C19.7937 3.48055 18.0664 2.75862 16.3967 2.06041C15.3951 1.6417 14.3595 1.20875 13.342 0.781075C12.8985 0.594395 12.4502 0.5 12.0104 0.5C11.5786 0.5 11.143 0.590703 10.7149 0.770001C10.117 1.02049 9.51854 1.27098 8.92007 1.52147C6.83768 2.39264 4.68447 3.29335 2.57386 4.19722C2.11809 4.39233 1.68255 4.67499 1.34764 4.99193C0.717224 5.58941 0.422249 6.4263 0.517557 7.34916C0.547374 9.15531 0.854594 10.7025 1.15117 11.9777C1.49406 13.4516 2.01852 14.8849 2.7091 16.2391C3.37732 17.5485 4.22071 18.8215 5.21585 20.0228C6.52726 21.6054 8.24972 22.918 10.6356 24.1535C11.0797 24.3835 11.5392 24.5 12.0013 24.5C12.4635 24.5 12.932 24.384 13.3985 24.1556C15.2423 23.2523 16.8711 22.0721 18.2395 20.6477C19.5738 19.2587 20.6956 17.6007 21.5752 15.7197C22.7956 13.1088 23.443 10.2875 23.4989 7.33492C23.5288 5.74761 22.9276 4.80946 21.4884 4.19933ZM12.0258 22.8199C11.832 22.8199 11.6345 22.7708 11.4396 22.6749C9.86356 21.8965 8.47122 20.9209 7.30144 19.7766C6.11409 18.6148 5.11841 17.2416 4.34211 15.696C3.37572 13.7717 2.77406 11.8917 2.50304 9.94844C2.39176 9.1511 2.30178 8.29732 2.22085 7.26215C2.16601 6.56078 2.4908 6.04029 3.16061 5.7571C6.39468 4.3897 9.02656 3.28385 11.4433 2.27821C11.6238 2.2028 11.816 2.16483 12.0136 2.16483C12.2457 2.16483 12.4875 2.21704 12.7318 2.31987C15.9441 3.6704 18.4221 4.71507 20.7664 5.70753C21.0497 5.82777 21.3665 5.98808 21.5672 6.27074C21.7749 6.56289 21.8468 6.96525 21.7871 7.50156V7.50525L21.7866 7.50894C21.686 9.77758 21.2568 11.9086 20.5114 13.8434C19.7516 15.8157 18.6361 17.6535 17.1964 19.3067C16.0101 20.6688 14.4793 21.7815 12.5178 22.7097C12.3607 22.784 12.1951 22.8215 12.0258 22.8215V22.8199Z" fill="#232323"></path>
-                        <path d="M19.089 8.41123C19.0895 8.70127 18.8206 8.94227 18.6204 9.14213C16.0147 11.7372 13.3998 14.3228 10.7797 16.9036C10.1924 17.4816 9.81806 17.4932 9.22758 16.9205C7.90818 15.6411 6.60475 14.346 5.30932 13.0429C4.87591 12.6068 4.89294 12.1385 5.2976 11.7198C5.69907 11.3042 6.16762 11.2816 6.62605 11.714C7.62332 12.6542 8.60941 13.6066 9.57739 14.5754C9.88355 14.8818 10.08 14.8897 10.3936 14.5764C12.5703 12.4032 14.7618 10.2448 16.9555 8.08902C17.1786 7.86965 17.4235 7.64869 17.7004 7.51105C18.2823 7.22207 19.0874 7.71408 19.089 8.41123Z" fill="#232323"></path>
-                    </svg>
-                    <h2 className='text-sm sm:text-lg text-center text-[#232323] whitespace-nowrap'>100% SECURE SHOPPING</h2>
-                </div>
-            </div>
-        </>
+        <section className="relative w-full overflow-hidden hero-two-slider">
+            <Slider {...sliderSettings}>
+                {slides.map((slide, i) => (
+                    <a
+                        key={i}
+                        href={slide.ctaLink || (isCustomDomain ? "/" : `/brand/${settings?.brandSlug}`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                    >
+                        <img
+                            src={getImageSrc(slide)}
+                            alt={`banner-${i + 1}`}
+                            className="mx-auto h-[30vh] sm:h-[50vh] md:h-[70vh] lg:h-[80vh] w-full object-cover transition-transform duration-[1000ms] ease-[cubic-bezier(0.7,0,0.3,1)] hover:scale-110"
+                        />
+                        {(slide.title || slide.subtitle) && (
+                            <div className="absolute w-full p-4 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-56 top-1/2 -translate-y-1/2 flex flex-col justify-center items-start">
+                                {slide.title && <h2 className="text-[#202020] text-2xl md:text-4xl font-bold">{slide.title}</h2>}
+                                {slide.subtitle && <p className="text-[#202020] w-full max-w-xs text-sm my-4">{slide.subtitle}</p>}
+                                <button className="relative px-10 sm:px-16 py-2.5 sm:py-3 text-sm sm:text-base bg-[#202020] text-white rounded-full font-bold mt-4 z-30 transition-all duration-500 ease-out">
+                                    Shop Now
+                                </button>
+                            </div>
+                        )}
+                    </a>
+                ))}
+            </Slider>
+        </section>
     )
 }

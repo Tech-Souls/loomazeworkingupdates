@@ -35,12 +35,14 @@ const settingsSchema = new Schema({
             subtitle: { type: String, default: null },
             ctaLink: { type: String, default: null },
             image: { type: String, default: null },
+            video: { type: String, default: null }, // ✅ added
         }],
         heroSlider2: [{
             title: { type: String, default: null },
             subtitle: { type: String, default: null },
             ctaLink: { type: String, default: null },
             image: { type: String, default: null },
+            video: { type: String, default: null }, // ✅ added
         }],
         exploreMore: {
             title: { type: String, default: null },

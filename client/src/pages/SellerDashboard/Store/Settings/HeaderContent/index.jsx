@@ -7,7 +7,7 @@ export default function HeaderContent({ settings, setSettings }) {
     const [selectedMenu, setSelectedMenu] = useState(settings?.content?.headerMenuName)
     const [headerMenuSaving, setHeaderMenuSaving] = useState(false)
     const [loadingMenus, setLoadingMenus] = useState(true)
-
+    
     useEffect(() => {
         if (!settings.sellerID) return
         fetchMenuItems()

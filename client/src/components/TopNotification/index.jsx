@@ -47,7 +47,7 @@ export default function TopNotification({ notifications = [] }) {
     };
 
     return (
-        <div className="relative w-full bg-black text-white text-center py-2 text-sm font-medium">
+        <div className="relative  w-full bg-black text-white text-center py-2 text-sm font-medium">
             <Slider {...settings}>
                 {notifications.map((note, idx) => (
                     <div key={idx} className="px-8">

@@ -9,148 +9,162 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function PlatformCategoriesLuxury({ settings, isCustomDomain }) {
-    const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
-    useEffect(() => {
-        if (settings) fetchPlatformHomeCategories();
-    }, [settings]);
+  useEffect(() => {
+    if (settings?.sellerID) {
+      fetchPlatformHomeCategories();
+    }
+  }, [settings]);
 
-    const fetchPlatformHomeCategories = () => {
-        setLoading(true);
-        axios
-            .get(`${import.meta.env.VITE_HOST}/platform/home/fetch-categories?sellerID=${settings?.sellerID}`)
-            .then((res) => {
-                if (res.status === 200) setCategories(res.data?.categories);
-            })
-            .catch((err) => console.error("Frontend GET error", err.message))
-            .finally(() => setLoading(false));
-    };
+  const fetchPlatformHomeCategories = async () => {
+    try {
+      setLoading(true);
 
-    return (
-        <section className="section-categories py-14">
-            <div className="main-container mx-auto px-4 relative">
+      const res = await axios.get(
+        `${import.meta.env.VITE_HOST}/platform/home/fetch-categories?sellerID=${settings?.sellerID}`
+      );
 
-                <h2 className="font-bold text-2xl text-center mb-8">Shop by Category</h2>
+      if (res.status === 200) {
+        setCategories(res.data?.categories || []);
+      }
+    } catch (err) {
+      console.error("Frontend GET error:", err.message);
+      setCategories([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-                {loading && <p className="text-gray-500">Loading...</p>}
+  const generateLink = (catName) => {
+    return isCustomDomain
+      ? `/products/${catName}`
+      : `/brand/${settings?.brandSlug}/products/${catName}`;
+  };
 
-                {!loading && categories.length === 0 && (
-                    <p className="text-red-500">No category found!</p>
-                )}
+  return (
+    <section className="section-categories">
+      {loading && (
+        <div className="flex justify-center py-10">
+          <p className="text-gray-400 text-sm">Loading...</p>
+        </div>
+      )}
 
-                {!loading && categories.length > 0 && (
-                    <>
-                        {categories.length > 4 ? (
-                            <div className="relative">
-                                {/* LEFT ARROW */}
-                                <button
-                                    ref={prevRef}
-                                    className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg border border-gray-300 rounded-full p-2 hover:bg-gray-100 transition"
-                                >
-                                    <ChevronLeft size={20} className="text-gray-700" />
-                                </button>
+      {!loading && categories.length === 0 && (
+        <div className="flex justify-center py-10">
+          <p className="text-red-400 text-sm">No category found!</p>
+        </div>
+      )}
 
-                                {/* RIGHT ARROW */}
-                                <button
-                                    ref={nextRef}
-                                    className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg border border-gray-300 rounded-full p-2 hover:bg-gray-100 transition"
-                                >
-                                    <ChevronRight size={20} className="text-gray-700" />
-                                </button>
+      {!loading && categories.length > 0 && (
+        <>
+          {categories.length > 3 ? (
+            <div className="relative">
+              {/* Navigation Buttons */}
+              <button
+                ref={prevRef}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white shadow-lg rounded-full p-2 transition"
+              >
+                <ChevronLeft size={22} className="text-gray-800" />
+              </button>
 
-                                <Swiper
-                                    modules={[Navigation]}
-                                    slidesPerView={2}
-                                    speed={500}
-                                    navigation={{
-                                        prevEl: prevRef.current,
-                                        nextEl: nextRef.current,
-                                    }}
-                                    onInit={(swiper) => {
-                                        swiper.params.navigation.prevEl = prevRef.current;
-                                        swiper.params.navigation.nextEl = nextRef.current;
-                                        swiper.navigation.init();
-                                        swiper.navigation.update();
-                                    }}
-                                    loop={true}
-                                    breakpoints={{
-                                        1024: { slidesPerView: 5 },
-                                        767: { slidesPerView: 4 },
-                                        599: { slidesPerView: 3 },
-                                    }}
-                                >
-                                    {categories.map((cat) => (
-                                        <SwiperSlide key={cat._id}>
-                                            <div className="p-2">
-                                                <a
-                                                    href={
-                                                        isCustomDomain
-                                                            ? `/products/${cat.name}`
-                                                            : `/brand/${settings?.brandSlug}/products/${cat.name}`
-                                                    }
-                                                    target="_blank"
-                                                    className="block group cursor-pointer"
-                                                >
-                                                    <div className="w-full aspect-square overflow-hidden">
-                                                        <img
-                                                            src={`${cat.imageURL}`}
-                                                            alt={cat.name}
-                                                            loading="lazy"
-                                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:-translate-y-3"
-                                                        />
-                                                    </div>
+              <button
+                ref={nextRef}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white shadow-lg rounded-full p-2 transition"
+              >
+                <ChevronRight size={22} className="text-gray-800" />
+              </button>
 
-                                                    {settings.layout.showCategoriesText && (
-                                                        <h3 className="font-bold text-sm p-3 text-center capitalize transition-all duration-300 ease-out group-hover:text-[var(--secondary)] group-hover:border-b-2">
-                                                            {cat.name}
-                                                        </h3>
-                                                    )}
-                                                </a>
-                                            </div>
-                                        </SwiperSlide>
-                                    ))}
-                                </Swiper>
-                            </div>
+              <Swiper
+                modules={[Navigation]}
+                speed={500}
+                spaceBetween={0}
+                loop={true}
+                navigation={{
+                  prevEl: prevRef.current,
+                  nextEl: nextRef.current,
+                }}
+                onBeforeInit={(swiper) => {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                }}
+                breakpoints={{
+                  0: { slidesPerView: 1 },
+                  599: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+              >
+                {categories.map((cat) => (
+                  <SwiperSlide key={cat._id}>
+                    <a
+                      href={generateLink(cat.name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group cursor-pointer relative overflow-hidden"
+                    >
+                      <div className="w-full aspect-[3/4] overflow-hidden">
+                        <img
+                          src={cat.imageURL}
+                          alt={cat.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      </div>
 
-                        ) : (
-                            /* -------- GRID VIEW -------- */
-                            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-                                {categories.map((cat) => (
-                                    <a
-                                        key={cat._id}
-                                        href={
-                                            isCustomDomain
-                                                ? `/products/${cat.name}`
-                                                : `/brand/${settings?.brandSlug}/products/${cat.name}`
-                                        }
-                                        target="_blank"
-                                        className="block group cursor-pointer"
-                                    >
-                                        <div className="w-full aspect-square overflow-hidden">
-                                            <img
-                                                src={`${cat.imageURL}`}
-                                                alt={cat.name}
-                                                loading="lazy"
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                            />
-                                        </div>
-
-                                        {settings.layout.showCategoriesText && (
-                                            <h3 className="head font-bold p-3 text-center text-[var(--text)] capitalize">
-                                                {cat.name}
-                                            </h3>
-                                        )}
-                                    </a>
-                                ))}
-                            </div>
-                        )}
-                    </>
-                )}
+                      {settings?.layout?.showCategoriesText && (
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-6 py-6">
+                          <h3 className="text-white font-bold text-lg capitalize">
+                            {cat.name}
+                          </h3>
+                          <span className="text-white/80 text-xs uppercase tracking-widest">
+                            Shop Now →
+                          </span>
+                        </div>
+                      )}
+                    </a>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
-        </section>
-    );
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-3">
+              {categories.map((cat) => (
+                <a
+                  key={cat._id}
+                  href={generateLink(cat.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group cursor-pointer relative overflow-hidden"
+                >
+                  <div className="w-full aspect-[3/4] overflow-hidden">
+                    <img
+                      src={cat.imageURL}
+                      alt={cat.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {settings?.layout?.showCategoriesText && (
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-6 py-6">
+                      <h3 className="text-white font-bold text-lg capitalize">
+                        {cat.name}
+                      </h3>
+                      <span className="text-white/80 text-xs uppercase tracking-widest">
+                        Shop Now →
+                      </span>
+                    </div>
+                  )}
+                </a>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </section>
+  );
 }

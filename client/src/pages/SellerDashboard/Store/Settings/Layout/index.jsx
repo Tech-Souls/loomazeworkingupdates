@@ -18,7 +18,7 @@ const styles = [
     { key: "style3", title: "Emarald", desc: "Smooth feel", rounded: "rounded-3xl" },
     { key: "jewellery", title: "Jewellery", desc: "Premium Feel", rounded: "rounded-none" },
     { key: "fashion", title: "Fashion", desc: "Modern Look", rounded: "rounded-none" },
-    {key: "luxury"}
+    {key: "luxury", title:"luxury", des:"Different look", rounded:"rounded-2xl"}
 ];
 
 export default function Layout({ user, settings, setSettings }) {
