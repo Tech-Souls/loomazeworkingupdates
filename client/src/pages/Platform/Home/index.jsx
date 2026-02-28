@@ -8,6 +8,7 @@ import BrandFaqs from '../../../components/BrandFaqs'
 import BrandReview from '../../../components/BrandReview'
 import PlatformHeroTwo from '../../../components/PlatformHeroTwo'
 import PlatformCategoriesTwo from '../../../components/PlatformCategoriesTwo'
+import PlatformCategoriesPremium from '../../../components/PlatformCategoriesPremium'
 import PlatformFeaturedProductsTwo from '../../../components/PlatformFeaturedProductsTwo'
 import PlatformExploreTwo from '../../../components/PlatformExploreTwo'
 import BrandReviewTwo from '../../../components/BrandReviewTwo'
@@ -23,6 +24,7 @@ import PlatformHeroJewellery from '../../../components/PlatformHeroJewellery'
 import PlatformHeroDouble from '../../../components/PlatformHeroDouble'
 import PlatformCategoriesJewellery from '../../../components/PlatformCategoriesJewellery'
 import PlatformFeaturedProductsJewellery from '../../../components/PlatformFeaturedProductsJewellery'
+import PlatformFeaturedProductsPremium from '../../../components/PlatformFeaturedProductsPremium'
 import PlatformRecentProductsJewellery from '../../../components/PlatformRecentProductsJewellery'
 import PlatformExploreDouble from '../../../components/PlatformExploreDouble'
 import PlatformImageGallery from '../../../components/PlatformImageGallery'
@@ -39,25 +41,27 @@ import PlatformRecentProductsLuxury from "../../../components/PlatformRecentProd
 import PlatformImageGalleryFour from '../../../components/PlatformImageGalleryFour'
 import BrandReviewsFive from '../../../components/BrandReviewsFive'
 import BrandFaqsFive from '../../../components/BrandFaqsFive'
+import PlatformHeroPremium from '../../../components/PlatformHeroPremium'
+import PlatformRecentProductsPremium from '../../../components/PlatformRecentProductsPremium'
+import PlatformExplorePremium from '../../../components/PlatformExplorePremium'
 
 export default function Home({ settings, isCustomDomain }) {
     const style = settings?.layout?.homePageStyle
 
-    const knownStyles = ['style1', 'style2', 'style3', 'jewellery', 'fashion', 'luxury']
+    const knownStyles = ['style1', 'style2', 'style3', 'jewellery', 'fashion', 'luxury', 'premium']
     const effectiveStyle = knownStyles.includes(style) ? style : 'style1'
 
-    // ─── Component maps ──────────────────────────────────────────────────────
-
-    // ✅ ONE hero per theme — no heroTopComponents, no heroDoubleComponents
-    // jewellery uses PlatformHeroDouble as its single hero (not PlatformHeroJewellery + PlatformHeroDouble)
-    // fashion uses PlatformHeroFashion as its single hero (PlatformHeroTopFashion removed — was duplicate)
-    // luxury has NO hero here — video hero lives inside PlatformHeader
+    // ─── ONE hero per theme ───────────────────────────────────────────────────
+    // luxury  → no hero here, video hero is inside PlatformHeader
+    // jewellery → PlatformHeroDouble (single hero, removed PlatformHeroJewellery duplicate)
+    // fashion → PlatformHeroFashion  (single hero, removed PlatformHeroTopFashion duplicate)
     const heroComponents = {
         style1:    PlatformHero,
         style2:    PlatformHeroTwo,
         style3:    PlatformHeroThree,
-        jewellery: PlatformHeroDouble,   // ✅ was showing PlatformHeroJewellery + PlatformHeroDouble (2 sliders)
-        fashion:   PlatformHeroFashion,  // ✅ was showing PlatformHeroTopFashion + PlatformHeroFashion (2 sliders)
+        jewellery: PlatformHeroDouble,
+        fashion:   PlatformHeroFashion,
+        premium:   PlatformHeroPremium,
     }
 
     const categoriesComponents = {
@@ -67,6 +71,7 @@ export default function Home({ settings, isCustomDomain }) {
         jewellery: PlatformCategoriesJewellery,
         fashion:   PlatformCategoriesFashion,
         luxury:    PlatformCategoriesLuxury,
+        premium:   PlatformCategoriesPremium,
     }
 
     const featuresProductsComponents = {
@@ -76,6 +81,7 @@ export default function Home({ settings, isCustomDomain }) {
         jewellery: PlatformFeaturedProductsJewellery,
         fashion:   PlatformFeaturedProductsFashion,
         luxury:    PlatformFeaturedProductsLuxury,
+        premium:   PlatformFeaturedProductsPremium,
     }
 
     const recentProductsComponents = {
@@ -85,6 +91,7 @@ export default function Home({ settings, isCustomDomain }) {
         jewellery: PlatformRecentProductsJewellery,
         fashion:   PlatformRecentProductsFashion,
         luxury:    PlatformRecentProductsLuxury,
+        premium:   PlatformRecentProductsPremium,
     }
 
     const exploreComponents = {
@@ -93,6 +100,7 @@ export default function Home({ settings, isCustomDomain }) {
         style3:    PlatformExploreThree,
         jewellery: PlatformExploreDouble,
         fashion:   PlatformExploreDouble,
+        premium:   PlatformExplorePremium,
     }
 
     const imageGalleryComponents = {
