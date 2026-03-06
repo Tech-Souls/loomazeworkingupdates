@@ -122,9 +122,10 @@ export default function Home({ settings, isCustomDomain }) {
     jewellery: BrandFaqsFour,
     fashion: BrandFaqsFour,
   };
-  const stripperComponent = {
-    premium: PlatformStripperPremium,
-  };
+  
+  const stripperComponents = {
+        premium:PlatformStripperPremium
+    }
 
   const HeroTopComponent = heroTopComponents[style] || null;
   const HeroComponent = heroComponents[style] || null;
@@ -136,7 +137,7 @@ export default function Home({ settings, isCustomDomain }) {
   const ImageGalleryComponent = imageGalleryComponents[style] || null;
   const ReviewsComponent = reviewsComponents[style] || null;
   const FaqsComponent = faqsComponents[style] || null;
-  const StripperComponent = stripperComponent[style] || null;
+  const StripperComponents = stripperComponents[style] || null;
 
   return (
     <div className="w-full overflow-x:hidden">
@@ -168,7 +169,8 @@ export default function Home({ settings, isCustomDomain }) {
           storeSettings={settings}
           isCustomDomain={isCustomDomain}
         />
-      )}
+      )}={(StripperComponents && settings?.visibility?.showStripper) && <PlatformStripperPremium  settings={settings}  isCustomDomain={isCustomDomain}  />}
+
       {ExploreComponent && settings?.visibility?.showExploreMore && (
         <ExploreComponent settings={settings} isCustomDomain={isCustomDomain} />
       )}
@@ -182,8 +184,8 @@ export default function Home({ settings, isCustomDomain }) {
       {FaqsComponent && (
         <FaqsComponent settings={settings} isCustomDomain={isCustomDomain} />
       )}
-      {StripperComponent && settings?.visibility?.showStripper && (
-        <StripperComponent
+      {StripperComponents && settings?.visibility?.showStripper && (
+        <StripperComponents
           settings={settings}
           isCustomDomain={isCustomDomain}
         />

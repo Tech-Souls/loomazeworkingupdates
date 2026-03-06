@@ -7,6 +7,7 @@ const productsModel = require("../models/products");
 const galleryModel = require("../models/gallery");
 const reviewsModel = require("../models/reviews");
 const faqsModel = require("../models/faqs");
+const settingsModel = require("../models/settings");
 
 router.get("/fetch-main-menu", async (req, res) => {
   try {
@@ -21,6 +22,23 @@ router.get("/fetch-main-menu", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+router.get('/fetch-stripper-content/:sellerID',async(req,res)=>{
+
+    try {
+    const {sellerID} = req.params;
+    const settings = await settingsModel.findOne({sellerID});
+    console.log('content', settings.content.stripperText);  
+
+    res.status(200).json({message: "Stripper content fetched", content: settings.content.stripperText || []})
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({message: error.message})
+  } 
+
+})
+
+
 
 router.get("/fetch-categories", async (req, res) => {
   try {

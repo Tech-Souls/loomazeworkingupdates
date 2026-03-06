@@ -19,9 +19,9 @@ const initialState = {
     autoplayCategoriesSpeed: 1,
     showFeaturedProducts: true,
     showExploreMore: true,
-    showStripper: true,
     showReviews: true,
     showRatings: true,
+    showStripper:true,
   },
 };
 
@@ -84,9 +84,9 @@ export default function Layout({ user, settings, setSettings }) {
       autoplayCategoriesSpeed,
       showFeaturedProducts,
       showExploreMore,
-      showStripper,
       showReviews,
       showRatings,
+      showStripper,
     } = settings.visibility;
     setState({
       layout: {
@@ -103,9 +103,9 @@ export default function Layout({ user, settings, setSettings }) {
         autoplayCategoriesSpeed,
         showFeaturedProducts,
         showExploreMore,
-        showStripper,
         showReviews,
         showRatings,
+        showStripper,
       },
     });
   }, [settings]);
@@ -210,7 +210,7 @@ export default function Layout({ user, settings, setSettings }) {
         Manage which section you want to display on your home page
       </p>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col  gap-6">
         <div className="p-4 border border-gray-200">
           <div className="flex justify-between items-center mb-4">
             <p className="text-sm text-gray-900 font-bold">
@@ -479,32 +479,6 @@ export default function Layout({ user, settings, setSettings }) {
         <div className="p-4 border border-gray-200">
           <div className="flex justify-between items-center mb-4">
             <p className="text-sm text-gray-900 font-bold">
-              Display Stripper
-            </p>
-            <div
-              className={`relative w-10 h-5.5 rounded-full cursor-pointer transition-all duration-300 ease-out ${state.visibility.showStripper ? "bg-blue-500" : "bg-gray-200"}`}
-              onClick={() =>
-                setState((prev) => ({
-                  ...prev,
-                  visibility: {
-                    ...prev.visibility,
-                   showStripper: !prev.visibility.showStripper,
-                  },
-                }))
-              }
-            >
-              <div
-                className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full transition-all duration-200 ease-out ${state.visibility.showStripper ? "left-[calc(100%-20px)]" : "left-1"}`}
-              ></div>
-            </div>
-          </div>
-              
-
-        </div>
-
-        <div className="p-4 border border-gray-200">
-          <div className="flex justify-between items-center mb-4">
-            <p className="text-sm text-gray-900 font-bold">
               Display Explore More Section
             </p>
             <div
@@ -552,6 +526,46 @@ export default function Layout({ user, settings, setSettings }) {
             </div>
           </div>
         </div>
+
+                 <div className="p-4 border  border-gray-200">
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-sm text-gray-900 font-bold">
+              Display Stripper 
+            </p>
+            <div
+              className={`relative w-10 h-5.5 rounded-full cursor-pointer transition-all duration-300 ease-out ${state.visibility.showStripper ? "bg-blue-500" : "bg-gray-200"}`}
+              onClick={() =>
+                setState((prev) => ({
+                  ...prev,
+                  visibility: {
+                    ...prev.visibility,
+                    showStripper: !prev.visibility.showStripper,
+                  },
+                }))
+              }
+            >
+              <div
+                className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full transition-all duration-200 ease-out ${state.visibility.showStripper ? "left-[calc(100%-20px)]" : "left-1"}`}
+              ></div>
+            </div>
+          </div>
+
+          <div className="relative flex justify-center items-end p-3 w-full bg-gray-100 border border-gray-200">
+            <p className="text-sm text-gray-800">
+              get 20% off during ramadan
+            </p>
+            <ArrowLeft
+              size={16}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-700"
+            />
+            <ArrowRight
+              size={16}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700"
+            />
+          </div>
+        </div>
+
+
 
         <div className="relative p-4 border border-gray-200">
           <div className="flex justify-between items-center mb-4">

@@ -26,37 +26,80 @@ router.post("/currency/update/:sellerID", async (req, res) => {
   }
 });
 
-router.post("/stripper-text/add/:sellerID", upload.single('image') ,  async (req, res) => {
- 
-  try {
-    const { sellerID } = req.params;
-    const { offerText1, offerText2, offerText3 } = req.body;
-    if (!req.file)
-        return res.status(400).json({ message: "Image  is required" });
-          
-      const imagePath = await uploadToFTP(req.file.path);
-      fs.unlinkSync(req.file.path);
+router.post('/stripper-text/:sellerID' , upload.single('stripperImage') , async (req,res)=>{
+    
+try{
+const{stripperText} = req.body
+if (!req.file) return res.status(400).json({ message: "Image file is required" })
+    const {sellerID} = req.params
 
-    const sellerSettings = await settingsModel.findOne({ sellerID });
-    if (!sellerSettings)
-      return res.status(404).json({ message: "Seller settings not found" });
+        const imagePath = await uploadToFTP(req.file.path);
+        fs.unlinkSync(req.file.path);
 
-    sellerSettings.content.stripper = {
-      offerText1: offerText1?.trim() || null,
-      offerText2: offerText2?.trim() || null,
-      offerText3: offerText3?.trim() || null,
-      imageUrl: imagePath,
-    };
-    await sellerSettings.save();
+         const sellerSettings = await settingsModel.findOne({sellerID} )
+        if (!sellerSettings) return res.status(404).json({ message: "Seller settings not found" })
 
-    res.status(202).json({ message: "Stripper text updated successfully!" ,
-        stripper: sellerSettings.content.stripperText
-     });
-     console.log(`stripper text:`, sellerSettings.content.stripper)
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: error.message });
-  }
+                sellerSettings.content.stripperText.push({
+            text: stripperText?.trim() || null,
+            imageURL: imagePath,
+        });
+
+        await sellerSettings.save();
+
+
+        console.log(sellerSettings.content.stripperText)
+
+        res.status(202).json({messaege :"stripper content is added successfully" , stripperContent:sellerSettings.content.stripperText})
+
+
+
+}
+catch(error){
+     console.error(error)
+        res.status(500).json({ message: error.message })
+
+}
+
+})
+
+
+
+router.delete('/stripper-text-delete/:sellerID', async (req, res) => {
+    try {
+        const { id } = req.body;
+        const { sellerID } = req.params;
+
+        const settings = await settingsModel.findOne({ sellerID });
+
+        if (!settings) {
+            return res.status(404).json({
+                message: "User account not found"
+            });
+        }
+
+        if (!settings.content || !settings.content.stripperText) {
+            return res.status(400).json({
+                message: "Stripper text not found"
+            });
+        }
+
+        settings.content.stripperText = settings.content.stripperText.filter(
+            item => item._id.toString() !== id
+        );
+
+        await settings.save();
+
+        res.status(200).json({
+            message: "Slide deleted successfully",
+            data: settings.content.stripperText
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: error.message
+        });
+    }
 });
 
 router.post("/top-notifications/update/:sellerID", async (req, res) => {

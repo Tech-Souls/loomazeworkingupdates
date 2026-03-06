@@ -54,12 +54,16 @@ const settingsSchema = new Schema({
             ctaLink: { type: String, default: null },
             imageURL: { type: String, default: null },
         },
-        stripper: [{
-            offerText1: { type: String, default: null },
-            offerText2: { type: String, default: null },
-            offerText3 : { type: String, default: null },
-            imageURL: { type: String, default: null },
-        }],
+        stripperText: [{
+        text: {
+          type: String,
+          default: null,
+        },
+        imageURL: {
+          type: String,
+          default: null,
+        },
+      }],
         currency: { type: String, default: 'Rs' },
         footerMenu1Name: { type: String, default: "Footer Menu 1" },
         footerMenu2Name: { type: String, default: "Footer Menu 2" },
@@ -77,7 +81,7 @@ const settingsSchema = new Schema({
         showExploreMore: { type: Boolean, default: true },
         showReviews: { type: Boolean, default: true },
         showRatings: { type: Boolean, default: true },
-        showStripper: { type: Boolean, default: false },
+        showStripper: { type: Boolean, default: true },
     },
 
     // Product Page Sale Section

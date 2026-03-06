@@ -4,7 +4,7 @@ import SellerCurrencyUpdate from "../../../../../components/SellerCurrencyUpdate
 import SellerHeroSectionContentUpdate from "../../../../../components/SellerHeroSectionContentUpdate";
 import SellerHeroSection2ContentUpdate from "../../../../../components/SellerHeroSection2ContentUpdate";
 import SellerExploreMoreContentUpdate from "../../../../../components/SellerExploreMoreContentUpdate";
-import SellerShowStripperContentUpdate from "../../../../../components/SellerShowStripper";
+import SelllerStripperContent from "../../../../../components/SellerStripperContent";
 
 export default function Content({ user, settings, setSettings }) {
   return (
@@ -28,7 +28,11 @@ export default function Content({ user, settings, setSettings }) {
       {settings?.layout?.homePageStyle == "jewellery" && (
         <SellerHeroSection2ContentUpdate user={user} settings={settings} />
       )}
-      <SellerShowStripperContentUpdate user={user} settings={settings} setSettings={setSettings}   />
+      <SelllerStripperContent
+        user={user}
+        settings={settings}
+        setSettings={setSettings}
+      />
       <SellerExploreMoreContentUpdate user={user} settings={settings} />
     </div>
   );
