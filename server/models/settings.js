@@ -82,6 +82,7 @@ const settingsSchema = new Schema({
         showReviews: { type: Boolean, default: true },
         showRatings: { type: Boolean, default: true },
         showStripper: { type: Boolean, default: true },
+        showSpotlightProduct: { type: Boolean, default: true },
     },
 
     // Product Page Sale Section

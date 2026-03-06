@@ -22,6 +22,7 @@ const initialState = {
     showReviews: true,
     showRatings: true,
     showStripper:true,
+    showSpotlightProduct:true,
   },
 };
 
@@ -87,6 +88,7 @@ export default function Layout({ user, settings, setSettings }) {
       showReviews,
       showRatings,
       showStripper,
+      showSpotlightProduct,
     } = settings.visibility;
     setState({
       layout: {
@@ -106,6 +108,7 @@ export default function Layout({ user, settings, setSettings }) {
         showReviews,
         showRatings,
         showStripper,
+        showSpotlightProduct,
       },
     });
   }, [settings]);
@@ -565,6 +568,56 @@ export default function Layout({ user, settings, setSettings }) {
           </div>
         </div>
 
+                <div className="p-4 border border-gray-200">
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-sm text-gray-900 font-bold">
+              Display Spotlight Product
+            </p>
+            <div
+              className={`relative w-10 h-5.5 rounded-full cursor-pointer transition-all duration-300 ease-out ${state.visibility.showSpotlightProduct ? "bg-blue-500" : "bg-gray-200"}`}
+              onClick={() =>
+                setState((prev) => ({
+                  ...prev,
+                  visibility: {
+                    ...prev.visibility,
+                    showSpotlightProduct: !prev.visibility.showSpotlightProduct,
+                  },
+                }))
+              }
+            >
+              <div
+                className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full transition-all duration-200 ease-out ${state.visibility.showSpotlightProduct ? "left-[calc(100%-20px)]" : "left-1"}`}
+              ></div>
+            </div>
+          </div>
+
+          <div className="flex flex-row-reverse gap-5  justify-between items-center p-6 w-full h-[450px]">
+            <div className="flex-1 ">
+              <div className="w-[80%] h-3 bg-gray-200 rounded-full mb-2"></div>
+              <div className="w-[50%] h-3 bg-gray-200 rounded-full"></div>
+              <button className="text-sm px-5 py-2 bg-gray-200 text-gray-800 mt-6">
+                Add To cart
+              </button>
+            </div>
+
+            <div className="flex justify-center items-center w-full max-w-[500px] h-full bg-gray-100 border border-gray-200">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1"
+                stroke="#666666"
+                className="size-16"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
 
 
         <div className="relative p-4 border border-gray-200">

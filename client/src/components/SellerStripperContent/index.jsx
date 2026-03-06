@@ -112,7 +112,7 @@ export default function SelllerStripperContent({
 
       <div className="mt-6">
         <label className="block mb-3 text-sm font-bold text-gray-900">
-          Add Notification
+          Add Stripper Text
         </label>
         <div className="flex  gap-5">
           <input
@@ -148,7 +148,7 @@ export default function SelllerStripperContent({
         </div>
       </div>
 
-      <p className="text-sm text-gray-900 font-bold mt-4 mb-2">Notifications</p>
+      <p className="text-sm text-gray-900 font-bold mt-4 mb-2">Stripper Text</p>
       <div className="flex flex-col items-start justify-center gap-2">
         {topStripperText.map((elem, i) => (
           <div

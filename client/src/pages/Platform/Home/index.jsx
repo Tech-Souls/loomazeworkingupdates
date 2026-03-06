@@ -42,6 +42,7 @@ import PlatformHeroPremium from "../../../components/PlatformHeroPremium";
 import PlatformRecentProductsPremium from "../../../components/PlatformRecentProductsPremium";
 import PlatformExplorePremium from "../../../components/PlatformExplorePremium";
 import PlatformStripperPremium from "../../../components/PlatformStripperPremium";
+import SellerSpotlightProduct from "../../../components/SellerSpotlightProduct";
 
 export default function Home({ settings, isCustomDomain }) {
   const style = settings?.layout?.homePageStyle;
@@ -122,10 +123,14 @@ export default function Home({ settings, isCustomDomain }) {
     jewellery: BrandFaqsFour,
     fashion: BrandFaqsFour,
   };
-  
+
   const stripperComponents = {
-        premium:PlatformStripperPremium
-    }
+    premium: PlatformStripperPremium,
+  };
+
+  const spotlightProductComponents = {
+    premium: SellerSpotlightProduct,
+  };
 
   const HeroTopComponent = heroTopComponents[style] || null;
   const HeroComponent = heroComponents[style] || null;
@@ -138,6 +143,7 @@ export default function Home({ settings, isCustomDomain }) {
   const ReviewsComponent = reviewsComponents[style] || null;
   const FaqsComponent = faqsComponents[style] || null;
   const StripperComponents = stripperComponents[style] || null;
+  const SpotlightProductComponent = spotlightProductComponents[style] || null;
 
   return (
     <div className="w-full overflow-x:hidden">
@@ -169,8 +175,20 @@ export default function Home({ settings, isCustomDomain }) {
           storeSettings={settings}
           isCustomDomain={isCustomDomain}
         />
-      )}={(StripperComponents && settings?.visibility?.showStripper) && <PlatformStripperPremium  settings={settings}  isCustomDomain={isCustomDomain}  />}
-
+      )}
+      {StripperComponents && settings?.visibility?.showStripper && (
+        <PlatformStripperPremium
+          settings={settings}
+          isCustomDomain={isCustomDomain}
+        />
+      )}
+      {
+        SpotlightProductComponent && settings?.visibility?.showSpotlightProduct && (
+          <SellerSpotlightProduct
+             isCustomDomain={isCustomDomain} storeSettings={settings}
+          />
+        )
+      }
       {ExploreComponent && settings?.visibility?.showExploreMore && (
         <ExploreComponent settings={settings} isCustomDomain={isCustomDomain} />
       )}

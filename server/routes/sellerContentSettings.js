@@ -26,6 +26,13 @@ router.post("/currency/update/:sellerID", async (req, res) => {
   }
 });
 
+
+router.post('/spotlight-product/update/:sellerID' , upload.single('spotlightImage') , async (req,res)=>{
+    
+})        
+
+
+
 router.post('/stripper-text/:sellerID' , upload.single('stripperImage') , async (req,res)=>{
     
 try{
