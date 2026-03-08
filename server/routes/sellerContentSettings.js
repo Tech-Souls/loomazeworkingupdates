@@ -134,9 +134,49 @@ router.post('/brand-icons/:sellerID' , upload.single('icons') , async (req,res)=
     }
 });
 
+
+router.delete('/brands-icons-delete/:sellerID' , async(req,res)=>{
+  try {
+        const { id } = req.body;
+        const { sellerID } = req.params;
+
+        const settings = await settingsModel.findOne({ sellerID });
+
+        if (!settings) {
+            return res.status(404).json({
+                message: "User account not found"
+            });
+        }
+
+        if (!settings.content || !settings.content.brandIcons) {
+            return res.status(400).json({
+                message: "brand icons not found"
+            });
+        }
+
+        settings.content.brandIcons = settings.content.brandIcons.filter(
+            item => item._id.toString() !== id
+        );
+
+        await settings.save();
+
+        res.status(200).json({
+            message: "icon deleted successfully",
+            data: settings.content.brandIcons
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: error.message
+        });
+    }
+})
+
 router.post("/top-notifications/update/:sellerID", async (req, res) => {
   try {
     const { sellerID } = req.params;
+    console.log( 'req body ka data yaha ay ga' , req.body)
     const data = req.body;
 
     const sellerSettings = await settingsModel.findOne({ sellerID });
