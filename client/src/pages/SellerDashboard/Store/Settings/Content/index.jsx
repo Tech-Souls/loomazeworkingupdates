@@ -5,7 +5,7 @@ import SellerHeroSectionContentUpdate from "../../../../../components/SellerHero
 import SellerHeroSection2ContentUpdate from "../../../../../components/SellerHeroSection2ContentUpdate";
 import SellerExploreMoreContentUpdate from "../../../../../components/SellerExploreMoreContentUpdate";
 import SelllerStripperContent from "../../../../../components/SellerStripperContent";
-import SellerSpotlightProduct from "../../../../../components/SellerSpotlightProduct";
+import SellerSpotlightProductContent from "../../../../../components/SellerSpotlightProductContent";
 import SellerBrandsContent from "../../../../../components/SellerBrandsContent";
 
 export default function Content({ user, settings, setSettings }) {
@@ -35,7 +35,7 @@ export default function Content({ user, settings, setSettings }) {
         settings={settings}
         setSettings={setSettings}
       />
-      <SellerSpotlightProduct  user={user}
+      <SellerSpotlightProductContent  user={user}
         settings={settings}
         setSettings={setSettings}  />
         <SellerBrandsContent user={user}

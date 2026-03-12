@@ -105,7 +105,7 @@ function SellerBrandsContent({ user, settings, setSettings }) {
         <h1>Brands Content</h1>
         {icons.map((elem, i) => {
           return (
-            <div className="lg:w-1/2 w-full grid py-5 items-center gap-5  grid-cols-[1fr_20%] ">
+            <div key={i} className="lg:w-1/2 w-full grid py-5 items-center gap-5  grid-cols-[1fr_20%] ">
               <div className="w-full h-8 flex items-center justify-center  ">
                 <img
                   className=" w-10 h-10 object-c items-center justify-start"

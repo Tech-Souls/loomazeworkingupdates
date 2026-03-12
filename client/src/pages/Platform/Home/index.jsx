@@ -42,8 +42,10 @@ import PlatformHeroPremium from "../../../components/PlatformHeroPremium";
 import PlatformRecentProductsPremium from "../../../components/PlatformRecentProductsPremium";
 import PlatformExplorePremium from "../../../components/PlatformExplorePremium";
 import PlatformStripperPremium from "../../../components/PlatformStripperPremium";
-import SellerSpotlightProduct from "../../../components/SellerSpotlightProduct";
-import SellerBrandsContent from "../../../components/SellerBrandsContent";
+import SellerSpotlightProductPremium from "../../../components/SellerSpotlightProductPremium";
+import PlatformIconsPremium from '../../../components/PlatformIconsPremium';
+import BrandReviewPremium from '../../../components/BrandReviewPremium'
+
 
 export default function Home({ settings, isCustomDomain }) {
   const style = settings?.layout?.homePageStyle;
@@ -115,6 +117,7 @@ export default function Home({ settings, isCustomDomain }) {
     style3: BrandReviewThree,
     jewellery: BrandReviewFour,
     fashion: BrandReviewFour,
+    premium: BrandReviewPremium,
   };
 
   const faqsComponents = {
@@ -130,13 +133,11 @@ export default function Home({ settings, isCustomDomain }) {
   };
 
   const spotlightProductComponents = {
-    premium: SellerSpotlightProduct,
+    premium: SellerSpotlightProductPremium,
   };
   const brandsComponents = {
-    premium: SellerBrandsContent,
-  }
-
-
+    premium: PlatformIconsPremium ,
+  };
 
   const HeroTopComponent = heroTopComponents[style] || null;
   const HeroComponent = heroComponents[style] || null;
@@ -149,9 +150,8 @@ export default function Home({ settings, isCustomDomain }) {
   const ReviewsComponent = reviewsComponents[style] || null;
   const FaqsComponent = faqsComponents[style] || null;
   const StripperComponents = stripperComponents[style] || null;
-  const SpotlightProductComponent = spotlightProductComponents[style] || null;
-  const BrandsComponent = brandsComponents[style] || null;
-
+  const SellerSpotlightProductComponent = spotlightProductComponents[style] || null;
+  const BrandsIcons = brandsComponents[style] || null;
 
   return (
     <div className="w-full overflow-x:hidden">
@@ -190,8 +190,22 @@ export default function Home({ settings, isCustomDomain }) {
           isCustomDomain={isCustomDomain}
         />
       )}
-     
 
+      {BrandsIcons && settings?.visibility?.showBrands && (
+        <PlatformIconsPremium
+          settings={settings}
+          isCustomDomain={isCustomDomain}
+        />
+      )} 
+      {
+          SellerSpotlightProductComponent && settings?.visibility?.showSpotlightProduct &&(
+            <SellerSpotlightProductPremium settings={settings}             storeSettings={settings}
+ />
+          )
+
+      }
+
+      
 
       {ExploreComponent && settings?.visibility?.showExploreMore && (
         <ExploreComponent settings={settings} isCustomDomain={isCustomDomain} />

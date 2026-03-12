@@ -38,6 +38,12 @@ router.get('/fetch-stripper-content/:sellerID',async(req,res)=>{
 
 })
 
+router.get('/fetch-spotlight-product/:sellerID' , async(req,res)=>{
+  const {sellerID} = req.params
+  const settings = await settingsModel.findOne({sellerID}).populate('content.spotlightProduct')
+  res.status(200).json({message:'data is found' , data:settings})
+
+})
 
 
 router.get("/fetch-categories", async (req, res) => {

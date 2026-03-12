@@ -64,6 +64,7 @@ const styles = [
     desc: "Exclusive Design",
     rounded: "rounded-4xl",
   },
+
 ];
 
 

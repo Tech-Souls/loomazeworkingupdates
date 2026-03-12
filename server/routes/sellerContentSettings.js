@@ -173,10 +173,39 @@ router.delete('/brands-icons-delete/:sellerID' , async(req,res)=>{
     }
 })
 
+router.post('/set-spotlight-product/:sellerID', async (req, res) => {
+  const { sellerID } = req.params;
+  const { productID } = req.body;
+
+  if (!productID) {
+    return res.status(400).json({ message: "productID is required" });
+  }
+
+  try {
+    // Update the nested spotlightProduct inside content
+    const updatedSettings = await settingsModel.findOneAndUpdate(
+      { sellerID },
+      { 'content.spotlightProduct': productID }, // replace old product
+      { new: true, upsert: true }
+    ).populate('content.spotlightProduct'); // ✅ populate the nested product
+
+    res.status(200).json({
+      message: 'Spotlight product set successfully',
+      data: updatedSettings.content.spotlightProduct
+    });
+
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
+
+
+
 router.post("/top-notifications/update/:sellerID", async (req, res) => {
   try {
     const { sellerID } = req.params;
-    console.log( 'req body ka data yaha ay ga' , req.body)
     const data = req.body;
 
     const sellerSettings = await settingsModel.findOne({ sellerID });
@@ -218,7 +247,7 @@ router.post(
       if (!sellerSettings)
         return res.status(404).json({ message: "Seller settings not found" });
 
-      sellerSettings.content.stripper.push({
+      sellerSettings.content.heroSlider.push({
         title: title?.trim() || null,
         subtitle: subtitle?.trim() || null,
         ctaLink: ctaLink?.trim() || null,

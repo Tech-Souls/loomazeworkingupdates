@@ -145,13 +145,59 @@ button {
   scrollbar-width: none;
 }
 
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.marquee-left{
+  animation: scrollLeft 10s linear infinite;
+}
+
+.marquee-right{
+  animation: scrollRight 10s linear infinite;
+}
+
+/* pause on hover */
+.marquee-left:hover,
+.marquee-right:hover{
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeft{
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes scrollRight{
+  from{
+    transform: translateX(-33.333%);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
+
+
+
+
 /* Infinite Scrolling Animations for Ticker */
 @keyframes scroll-left {
   0% {
-    transform: translateX(0);
+    transform: translateX(30%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-40%);
   }
 }
 
@@ -170,4 +216,4 @@ button {
 
 .animate-scroll-right {
   animation: scroll-right 25s linear infinite;
-}.
+}
