@@ -18,14 +18,25 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
+<<<<<<< HEAD
     const allowed = ["image/jpeg", "image/png", "image/webp" , 'video/mp4', 'video/webm', 'video/ogg'];
+=======
+    const imageTypes = ["image/jpeg", "image/png", "image/webp"];
+    const videoTypes = ["video/mp4", "video/webm", "video/ogg"];
+    const allowed = [...imageTypes, ...videoTypes];
+
+>>>>>>> upstream/main
     allowed.includes(file.mimetype)
         ? cb(null, true)
-        : cb(new Error("Only JPG, PNG, WEBP allowed"), false);
+        : cb(new Error("Only JPG, PNG, WEBP, MP4, WEBM, OGG allowed"), false);
 };
 
 module.exports = multer({
     storage,
     fileFilter,
+<<<<<<< HEAD
     limits: { fileSize: 40 * 1024 * 1024 }
+=======
+    limits: { fileSize: 50 * 1024 * 1024 } // 50MB to support videos
+>>>>>>> upstream/main
 });

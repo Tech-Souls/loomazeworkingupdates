@@ -28,6 +28,14 @@ const initialState = {
 };
 
 const styles = [
+<<<<<<< HEAD
+    { key: "style1", title: "Classic", desc: "Sharp edges", rounded: "rounded-none" },
+    { key: "style2", title: "Modern", desc: "Rounded edges", rounded: "rounded-3xl" },
+    { key: "style3", title: "Emarald", desc: "Smooth feel", rounded: "rounded-3xl" },
+    { key: "jewellery", title: "Jewellery", desc: "Premium Feel", rounded: "rounded-none" },
+    { key: "fashion", title: "Fashion", desc: "Modern Look", rounded: "rounded-none" },
+    {key: "luxury", title:"luxury", des:"Different look", rounded:"rounded-2xl"}
+=======
   {
     key: "style1",
     title: "Classic",
@@ -64,7 +72,11 @@ const styles = [
     desc: "Exclusive Design",
     rounded: "rounded-4xl",
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97c9624df971c26b0c35baa3a6681e75d2f3f5d8
+>>>>>>> upstream/main
 ];
 
 

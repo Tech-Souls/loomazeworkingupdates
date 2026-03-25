@@ -33,22 +33,65 @@ router.post('/spotlight-product/update/:sellerID' , upload.single('spotlightImag
 
 
 
+<<<<<<< HEAD
 router.post('/stripper-text/:sellerID' , upload.single('stripperImage') , async (req,res)=>{
     
 try{
 const{stripperText} = req.body
 if (!req.file) return res.status(400).json({ message: "Image file is required" })
     const {sellerID} = req.params
+=======
+        res.status(202).json({ message })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+})
 
-        const imagePath = await uploadToFTP(req.file.path);
-        fs.unlinkSync(req.file.path);
+// ✅ HERO SLIDER 1 - ADD (image + optional video)
+router.post("/hero-slider/add/:sellerID", upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "video", maxCount: 1 }
+]), async (req, res) => {
+    try {
+        const { sellerID } = req.params
+        const { ctaLink, title, subtitle } = req.body;
+
+        const imageFile = req.files?.image?.[0]
+        const videoFile = req.files?.video?.[0]
+>>>>>>> upstream/main
+
+        if (!imageFile && !videoFile) return res.status(400).json({ message: "Image or video file is required" })
 
          const sellerSettings = await settingsModel.findOne({sellerID} )
         if (!sellerSettings) return res.status(404).json({ message: "Seller settings not found" })
 
+<<<<<<< HEAD
                 sellerSettings.content.stripperText.push({
             text: stripperText?.trim() || null,
             imageURL: imagePath,
+=======
+        // Upload image if provided
+        let imagePath = null
+        if (imageFile) {
+            imagePath = await uploadToFTP(imageFile.path)
+            fs.unlinkSync(imageFile.path)
+        }
+
+        // Upload video if provided
+        let videoPath = null
+        if (videoFile) {
+            videoPath = await uploadToFTP(videoFile.path)
+            fs.unlinkSync(videoFile.path)
+        }
+
+        sellerSettings.content.heroSlider.push({
+            title: title?.trim() || null,
+            subtitle: subtitle?.trim() || null,
+            ctaLink: ctaLink?.trim() || null,
+            image: imagePath,
+            video: videoPath,
+>>>>>>> upstream/main
         });
 
         await sellerSettings.save();
@@ -69,13 +112,22 @@ catch(error){
 
 })
 
+<<<<<<< HEAD
 
 
 router.delete('/stripper-text-delete/:sellerID', async (req, res) => {
+=======
+// ✅ HERO SLIDER 2 - ADD (image + optional video)
+router.post("/hero-slider-2/add/:sellerID", upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "video", maxCount: 1 }
+]), async (req, res) => {
+>>>>>>> upstream/main
     try {
         const { id } = req.body;
         const { sellerID } = req.params;
 
+<<<<<<< HEAD
         const settings = await settingsModel.findOne({ sellerID });
 
         if (!settings) {
@@ -83,6 +135,58 @@ router.delete('/stripper-text-delete/:sellerID', async (req, res) => {
                 message: "User account not found"
             });
         }
+=======
+        const imageFile = req.files?.image?.[0]
+        const videoFile = req.files?.video?.[0]
+
+        if (!imageFile && !videoFile) return res.status(400).json({ message: "Image or video file is required" })
+
+        const sellerSettings = await settingsModel.findOne({ sellerID })
+        if (!sellerSettings) return res.status(404).json({ message: "Seller settings not found" })
+
+        let imagePath = null
+        if (imageFile) {
+            imagePath = await uploadToFTP(imageFile.path)
+            fs.unlinkSync(imageFile.path)
+        }
+
+        let videoPath = null
+        if (videoFile) {
+            videoPath = await uploadToFTP(videoFile.path)
+            fs.unlinkSync(videoFile.path)
+        }
+
+        sellerSettings.content.heroSlider2.push({
+            title: title?.trim() || null,
+            subtitle: subtitle?.trim() || null,
+            ctaLink: ctaLink?.trim() || null,
+            image: imagePath,
+            video: videoPath,
+        });
+
+        await sellerSettings.save();
+
+        res.status(202).json({ message: "Slide added successfully!", heroSlider: sellerSettings.content.heroSlider2 })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// ✅ HERO SLIDER 1 - DELETE (removes image + video from FTP)
+router.delete("/hero-slider/delete/:sellerID/:index", async (req, res) => {
+    try {
+        const { sellerID, index } = req.params;
+
+        const sellerSettings = await settingsModel.findOne({ sellerID })
+        if (!sellerSettings) return res.status(404).json({ message: "Seller settings not found" })
+
+        const slide = sellerSettings.content.heroSlider[index];
+        if (!slide) return res.status(404).json({ message: "Slide not found" });
+
+        if (slide.image) await delFromFTP(slide.image);
+        if (slide.video) await delFromFTP(slide.video); // ✅ delete video too
+>>>>>>> upstream/main
 
         if (!settings.content || !settings.content.stripperText) {
             return res.status(400).json({
@@ -109,6 +213,7 @@ router.delete('/stripper-text-delete/:sellerID', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 router.post('/brand-icons/:sellerID' , upload.single('icons') , async (req,res)=>{
   console.log("Brand icons endpoint hit" , req.params.sellerID);
     try{
@@ -345,6 +450,9 @@ router.delete("/hero-slider/delete/:sellerID/:index", async (req, res) => {
   }
 });
 
+=======
+// ✅ HERO SLIDER 2 - DELETE (removes image + video from FTP)
+>>>>>>> upstream/main
 router.delete("/hero-slider-2/delete/:sellerID/:index", async (req, res) => {
   try {
     const { sellerID, index } = req.params;
@@ -353,11 +461,27 @@ router.delete("/hero-slider-2/delete/:sellerID/:index", async (req, res) => {
     if (!sellerSettings)
       return res.status(404).json({ message: "Seller settings not found" });
 
+<<<<<<< HEAD
     const slide = sellerSettings.content.heroSlider[index];
     if (!slide) return res.status(404).json({ message: "Slide not found" });
 
     if (slide.image) {
       await delFromFTP(slide.image);
+=======
+        const slide = sellerSettings.content.heroSlider2[index];
+        if (!slide) return res.status(404).json({ message: "Slide not found" });
+
+        if (slide.image) await delFromFTP(slide.image);
+        if (slide.video) await delFromFTP(slide.video); // ✅ delete video too
+
+        sellerSettings.content.heroSlider2.splice(index, 1);
+        sellerSettings.markModified("content.heroSlider2");
+        await sellerSettings.save();
+
+        res.status(202).json({ message: "Hero slide deleted successfully!", heroSlider: sellerSettings.content.heroSlider2 });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+>>>>>>> upstream/main
     }
 
     sellerSettings.content.heroSlider2.splice(index, 1);
