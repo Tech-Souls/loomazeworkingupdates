@@ -44,7 +44,10 @@ import PlatformExplorePremium from "../../../components/PlatformExplorePremium";
 import PlatformStripperPremium from "../../../components/PlatformStripperPremium";
 import SellerSpotlightProductPremium from "../../../components/SellerSpotlightProductPremium";
 import PlatformIconsPremium from '../../../components/PlatformIconsPremium';
-import BrandReviewPremium from '../../../components/BrandReviewPremium'
+import BrandReviewPremium from '../../../components/BrandReviewPremium';
+import ToolsHeroSection from "../../../components/ToolsHeroSection";
+import ToolsCategories from "../../../components/ToolsCategories";
+import ToolsBrandsIcon from "../../../components/ToolsBrandsIcon";
 
 
 export default function Home({ settings, isCustomDomain }) {
@@ -61,6 +64,7 @@ export default function Home({ settings, isCustomDomain }) {
     jewellery: PlatformHeroJewellery,
     fashion: PlatformHeroFashion,
     premium: PlatformHeroPremium,
+    tools: ToolsHeroSection,
   };
 
   const heroDoubleComponents = {
@@ -74,6 +78,7 @@ export default function Home({ settings, isCustomDomain }) {
     jewellery: PlatformCategoriesJewellery,
     fashion: PlatformCategoriesFashion,
     premium: PlatformCategoriesPremium,
+    tools: ToolsCategories,
   };
 
   const featuresProductsComponents = {
@@ -137,6 +142,7 @@ export default function Home({ settings, isCustomDomain }) {
   };
   const brandsComponents = {
     premium: PlatformIconsPremium ,
+    tools: ToolsBrandsIcon,
   };
 
   const HeroTopComponent = heroTopComponents[style] || null;
@@ -192,7 +198,7 @@ export default function Home({ settings, isCustomDomain }) {
       )}
 
       {BrandsIcons && settings?.visibility?.showBrands && (
-        <PlatformIconsPremium
+        <BrandsIcons
           settings={settings}
           isCustomDomain={isCustomDomain}
         />

@@ -64,6 +64,12 @@ const styles = [
     desc: "Exclusive Design",
     rounded: "rounded-4xl",
   },
+  {
+    key:'tools',
+    title:'Tools',
+    desc:'for tools and machinery stores', 
+    rounded:'rounded-none'
+  }
 
 ];
 
