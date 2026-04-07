@@ -8,10 +8,10 @@ const settingsModel = require("../models/settings");
 
 router.get("/all", async (req, res) => {
     try {
-        const { userID } = req.query
+        const { userID } = req.query;
         if (!userID) return res.status(400).json({ message: "userID is required" });
 
-        const reviews = await reviewsModel.find({ userID })
+        const reviews = await reviewsModel.find({ userID }).populate("userID");
 
         res.json({ message: "Reviews fetched!", reviews });
     } catch (error) {

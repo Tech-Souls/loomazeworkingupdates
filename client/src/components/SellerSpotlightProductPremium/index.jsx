@@ -25,7 +25,6 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
       )
       .then((res) => {
         const productData = res.data?.data?.content?.spotlightProduct;
-        console.log("Fetched spotlight product data:", productData.productID);
         const spotlight = productData?.[0];
 
         if (spotlight?.expiresIn) {
@@ -39,7 +38,8 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
 
   useEffect(() => {
     fetchSpotlightProduct();
-  }, [settings]);
+    console.log('hyhy')
+  }, [settings ]);
 
  
 
@@ -199,7 +199,7 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
     product?.comparedPrice && product.comparedPrice > product.price;
 
   return (
-    <div className="w-full mt-10 p-10 text-white">
+    <div className="w-full mt-20 p-10  text-white">
       {product ? (
         <div className="flex w-full h-full flex-wrap  relative items-start justify-center gap-5">
           <div className="flex items-center absolute -top-25 left-5 justify-center w-50 h-50">
