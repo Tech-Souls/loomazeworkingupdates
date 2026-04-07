@@ -8,7 +8,7 @@ function SellerSpotlightProductContent({ settings, setSettings }) {
   const [loading, setLoading] = useState(true);
   const [expiresIn, setExpiresIn] = useState(0);
   const [productID, setProductID] = useState(null)
-
+  const [previousProduct, setPreviousProduct] = useState(null)
   const handleAddProduct = () => {
     setLoading(true)
     if(!productID || !expiresIn){
@@ -46,8 +46,17 @@ function SellerSpotlightProductContent({ settings, setSettings }) {
   useEffect(() => {
     if (settings) {
       fetchFeaturedProducts();
+      
     }
   }, []);
+
+  useEffect(() => {
+    const currentSpotlight = settings?.content?.spotlightProduct?.[0]?.productID;
+    if(!previousProduct){
+      setPreviousProduct(currentSpotlight);
+    }
+  }, [settings,productID,products])
+  
 
 
 
@@ -89,25 +98,25 @@ function SellerSpotlightProductContent({ settings, setSettings }) {
               <th className="px-2 py-2  border">action</th>
             </tr>
           </thead>
-          <tbody className="w-full ">
+          <tbody className="w-full bg-white ">
             {products.map((item,i)=>{
               return(
-                <tr key={i} className="w-full text-center">
+                <tr key={i} className={`w-full  text-center ${previousProduct === item._id ? 'bg-green-300' : ''  }  border   `}>
               <td className="px-2 border py-2">{i+1}</td>
-              <td className="px-2 border  flex items-center justify-center py-2">
+              <td className="px-2   flex items-center justify-center py-2">
                 <img className="w-10 h-10  object-cover" src={item.mainImageURL} alt="" />
               </td>
-              <td className="px-2 border py-2">{item.title}</td>
-              <td className="px-2 border py-2">{item.price}</td>
-              <td className="px-2 border py-2">{item.stock}</td>
+              <td className="px-2  border py-2">{item.title}</td>
+              <td className="px-2  border py-2">{item.price}</td>
+              <td className="px-2  border   py-2">{item.stock}</td>
               
-              <td className="px-2  border py-2">
-                <button onClick={() => setProductID(item._id)} className="px-3 py-1 bg-green-600 text-white rounded-lg mx-2">
+              <td className="px-2   py-2">
+                <button onClick={() => {setProductID(item._id) 
+                  setPreviousProduct(item._id)
+                  }} className="px-3 py-1 bg-green-600 text-white rounded-lg mx-2">
                  Add
                 </button>
-                <button className="px-3 py-1 bg-red-600 text-white rounded-lg">
-                  delete
-                </button>
+                
               </td>
             </tr>
               )
@@ -116,29 +125,7 @@ function SellerSpotlightProductContent({ settings, setSettings }) {
           </tbody>
         </table>
 
-        {products.map((item, idx) => {
-          // return (
-          //   <div
-          //     key={idx}
-          //     className="w-full flex flex-col gap-2  shrink-0 p-5 bg-white"
-          //   >
-          //     <img
-          //       className="w-20 h-20 object-contain"
-          //       src={item.mainImageURL}
-          //       alt=""
-          //     />
-          //     <h6>{item.title}</h6>
-          //     <p>PRICE: {item.price}</p>
-          //     <p>QTY: {item.stock}</p>
-          //     <button
-          //       onClick={() => handleAddProduct(item)}
-          //       className="w-full border rounded-lg hover:bg-gray-900 hover:text-white py-2"
-          //     >
-          //       Add to SpotLight
-          //     </button>
-          //   </div>
-          // );
-        })}
+       
       </div>
     </div>
   );

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { ChevronRight , ChevronLeft } from "lucide-react";
 
 function BrandReviewPremium({ storeSettings }) {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     if (storeSettings) fetchRecentReviews();
   }, [storeSettings]);
 
-  useEffect(() => {
-    if(products.length === 0) setProducts(dummy)
-  }, [storeSettings]);
+
   
 
   const dummy = [
@@ -88,17 +88,36 @@ function BrandReviewPremium({ storeSettings }) {
       .finally(() => setLoading(false));
   };
 
+  const handleScroll = (direction) => {
+    if (!sliderRef.current) return;
+    const scrollAmount = direction === "right" ? 320 : -320;
+    sliderRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
+
+  const reviews = products.length > 0 ? products : dummy;
+
   return (
-    <div className="w-full p-5 overflow-x-auto bg-gray-300 scrollbar-hide  ">
+    <div className="w-full  overflow-hidden bg-gray-300 scrollbar-hide mb-20 py-10 ">
       <div className="w-full flex flex-col gap-5  mb-5 items-center justify-center">
         <p className="text-blue-500">Reviews</p>
         <p className="text-3xl capitalize font-semibold">coustomer Feedback</p>
         <p>what do people think about us? </p>
       </div>
-      <div className="flex gap-5  h-full w-max">
-        {products.map((item, i) => {
-          return (
-            <div className="w-72 max-h-115 bg-white cursor-pointer   flex flex-col gap-2 shrink-0 rounded-2xl p-5 ">
+      <div className="relative w-full">
+        <button
+          type="button"
+          onClick={() => handleScroll("left")}
+          className="absolute left-0 top-1/2 flex items-center justify-center z-10 -translate-y-1/2 rounded-full bg-white/90 w-10 h-10 shadow-lg hover:bg-black hover:text-white transition-colors duration-150 text-lg"
+        >
+          <ChevronLeft/>
+        </button>
+        <div
+          ref={sliderRef}
+          className=" gap-5  overflow-x-auto px-5 h-full w-full flex  scroll-smooth scrollbar-hide snap-x snap-mandatory"
+        >
+          {reviews.map((item, i) => {
+            return (
+              <div key={i} className="w-72 max-h-115 bg-white cursor-pointer   flex flex-col gap-2 shrink-0 rounded-2xl p-5 snap-center">
               <div className="w-full h-30 flex items-center gap-2 ">
                 <img
                   className="w-[40%] rounded-lg hover:scale-105 transition-all duration-150 h-full object-cover"
@@ -126,11 +145,12 @@ function BrandReviewPremium({ storeSettings }) {
             : "text-gray-300"
         }`}
       >
-        ★
+        <svg class="wokiee-review-star" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13 26C20.1797 26 26 20.1797 26 13C26 5.8203 20.1797 0 13 0C5.8203 0 0 5.8203 0 13C0 20.1797 5.8203 26 13 26ZM15.1358 10.1279L13.3242 4.56764C13.2224 4.25523 12.7776 4.25523 12.6758 4.56764L10.8642 10.1279C10.8187 10.2676 10.6877 10.3623 10.54 10.3623H4.67474C4.34494 10.3623 4.2075 10.7813 4.47397 10.9744L9.22119 14.414C9.34018 14.5002 9.38997 14.6526 9.34461 14.7918L7.53184 20.3556C7.43014 20.6678 7.79 20.9268 8.05681 20.7335L12.7992 17.2974C12.9189 17.2107 13.0811 17.2107 13.2008 17.2974L17.9432 20.7335C18.21 20.9268 18.5699 20.6678 18.4682 20.3556L16.6554 14.7918C16.61 14.6526 16.6598 14.5002 16.7788 14.414L21.526 10.9744C21.7925 10.7813 21.6551 10.3623 21.3252 10.3623H15.46C15.3123 10.3623 15.1813 10.2676 15.1358 10.1279Z" fill="#FFAB00"></path>
+</svg>
       </span>
     );
   })}
-  <p className="ml-2 text-sm font-semibold">{item.ratings.toFixed(1)}</p>
 </div>
               {/* main content */}
               <div className="w-full h-50 ">
@@ -147,8 +167,18 @@ function BrandReviewPremium({ storeSettings }) {
           );
         })}
       </div>
+        <button
+          type="button"
+          onClick={() => handleScroll("right")}
+          className="absolute  flex items-center justify-center right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 w-10 h-10 shadow-lg hover:bg-black hover:text-white transition-colors duration-150 text-lg"
+        >
+          <ChevronRight />
+        </button>
+      </div>
     </div>
   );
 }
 
 export default BrandReviewPremium;
+
+

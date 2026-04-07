@@ -34,13 +34,12 @@ useEffect(() => {
 
 
 
-console.log('settings of brandsicon ic ' , settings?.content?.brandIcons)
 
 
 
 
   return (
-    <div className="w-full  ">
+    <div className="w-full mt-20">
         <div className='w-full flex flex-col gap-2'>
 <p className="text-center capitalize text-lg text-blue-500">our brands</p>
       <h1 className="text-center text-4xl font-weight-[200]">Higher Demand</h1>
