@@ -48,7 +48,9 @@ import BrandReviewPremium from '../../../components/BrandReviewPremium';
 import ToolsHeroSection from "../../../components/ToolsHeroSection";
 import ToolsCategories from "../../../components/ToolsCategories";
 import ToolsBrandsIcon from "../../../components/ToolsBrandsIcon";
-
+import ToolsFeaturedProduct from "../../../components/ToolsFeaturedProduct";
+import ToolsSpotlightProduct from "../../../components/ToolsSpotlightProduct";
+import ToolsReviewProduct from '../../../components/ToolsReviewProduct'
 
 export default function Home({ settings, isCustomDomain }) {
   const style = settings?.layout?.homePageStyle;
@@ -88,6 +90,7 @@ export default function Home({ settings, isCustomDomain }) {
     jewellery: PlatformFeaturedProductsJewellery,
     fashion: PlatformFeaturedProductsFashion,
     premium: PlatformFeaturedProductsPremium,
+    tools: ToolsFeaturedProduct,
   };
 
   const recentProductsComponents = {
@@ -123,6 +126,7 @@ export default function Home({ settings, isCustomDomain }) {
     jewellery: BrandReviewFour,
     fashion: BrandReviewFour,
     premium: BrandReviewPremium,
+    tools: ToolsReviewProduct,
   };
 
   const faqsComponents = {
@@ -139,6 +143,7 @@ export default function Home({ settings, isCustomDomain }) {
 
   const spotlightProductComponents = {
     premium: SellerSpotlightProductPremium,
+    tools: ToolsSpotlightProduct,
   };
   const brandsComponents = {
     premium: PlatformIconsPremium ,
@@ -182,6 +187,7 @@ export default function Home({ settings, isCustomDomain }) {
           <FeaturesProductsComponent
             storeSettings={settings}
             isCustomDomain={isCustomDomain}
+            settings={settings}
           />
         )}
       {RecentProductsComponent && (
@@ -191,7 +197,7 @@ export default function Home({ settings, isCustomDomain }) {
         />
       )}
       {StripperComponents && settings?.visibility?.showStripper && (
-        <PlatformStripperPremium
+        <StripperComponents
           settings={settings}
           isCustomDomain={isCustomDomain}
         />
@@ -205,7 +211,7 @@ export default function Home({ settings, isCustomDomain }) {
       )} 
       {
           SellerSpotlightProductComponent && settings?.visibility?.showSpotlightProduct &&(
-            <SellerSpotlightProductPremium settings={settings}             storeSettings={settings}
+            <SellerSpotlightProductComponent settings={settings}             storeSettings={settings}
  />
           )
 

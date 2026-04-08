@@ -1,0 +1,26 @@
+/* Swiper Pagination Dots */
+.swiper-pagination {
+  bottom: -40px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #d1d5db;
+  opacity: 1;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #E53935;
+  width: 32px;
+  border-radius: 6px;
+}
+
+.swiper-pagination-bullet:hover {
+  background-color: #E53935;
+}
