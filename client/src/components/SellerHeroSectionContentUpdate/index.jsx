@@ -5,6 +5,7 @@ import { Trash2 } from "lucide-react";
 import axios from "axios";
 
 export default function SellerHeroSectionContentUpdate({ user, settings }) {
+<<<<<<< HEAD
   const [heroSlider, setHeroSlider] = useState(
     settings?.content?.heroSlider || [],
   );
@@ -20,6 +21,22 @@ export default function SellerHeroSectionContentUpdate({ user, settings }) {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
+=======
+    const [heroSlider, setHeroSlider] = useState(settings?.content?.heroSlider || [])
+    const [title, setTitle] = useState("")
+    const [subtitle, setSubtitle] = useState("")
+    const [cta, setCTA] = useState("")
+    const [image, setImage] = useState(null)
+    const [preview, setPreview] = useState(null)
+    const [video, setVideo] = useState(null)
+    const [videoPreview, setVideoPreview] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [deleting, setDeleting] = useState(null)
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0]
+        if (!file) return
+>>>>>>> upstream/main
 
     const validImageTypes = ["image/png", "image/jpeg", "image/webp"];
 
@@ -35,8 +52,55 @@ export default function SellerHeroSectionContentUpdate({ user, settings }) {
       );
     }
 
+<<<<<<< HEAD
     if (file.size > 40 * 1024 * 1024) {
       return window.toastify("File must be smaller than 40MB", "warning");
+=======
+    const handleVideoChange = (e) => {
+        const file = e.target.files[0]
+        if (!file) return
+
+        const validTypes = ["video/mp4", "video/webm", "video/ogg"];
+        if (!validTypes.includes(file.type)) return window.toastify("Please select a valid video type (MP4, WEBM, OGG)", "warning");
+        if (file.size > 50 * 1024 * 1024) return window.toastify("Please select a video within 50MB size", "warning")
+
+        setVideo(file)
+        setVideoPreview(URL.createObjectURL(file))
+    }
+
+    const handleAddSlide = () => {
+        if (!image && !video) return window.toastify("Select an image or video to add", "info")
+
+        const formdata = new FormData()
+        formdata.append("title", title.trim())
+        formdata.append("subtitle", subtitle.trim())
+        formdata.append("ctaLink", cta.trim())
+        if (image) formdata.append("image", image)
+        if (video) formdata.append("video", video)
+
+        setLoading(true)
+        axios.post(`${import.meta.env.VITE_HOST}/seller/content/hero-slider/add/${user._id}`, formdata, {
+            headers: { "Content-Type": "multipart/form-data" }
+        })
+            .then(res => {
+                const { status, data } = res
+                if (status === 202) {
+                    setTitle("")
+                    setSubtitle("")
+                    setCTA("")
+                    setImage(null)
+                    setPreview(null)
+                    setVideo(null)
+                    setVideoPreview(null)
+                    setHeroSlider(data.heroSlider)
+                    window.toastify(data.message, "success")
+                }
+            })
+            .catch(err => {
+                window.toastify(err.response?.data?.message || "Something went wrong", "error")
+            })
+            .finally(() => setLoading(false))
+>>>>>>> upstream/main
     }
 
     setImage(file);
@@ -52,6 +116,7 @@ export default function SellerHeroSectionContentUpdate({ user, settings }) {
     formdata.append("ctaLink", cta.trim());
     formdata.append("image", image);
 
+<<<<<<< HEAD
     setLoading(true);
     axios
       .post(
@@ -131,6 +196,145 @@ export default function SellerHeroSectionContentUpdate({ user, settings }) {
             className="w-full text-sm !p-2.5 bg-white border border-gray-300 !rounded-none"
             onChange={(e) => setTitle(e.target.value)}
           />
+=======
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                <div className='mb-4'>
+                    <label className='block mb-3 text-sm font-bold text-gray-900'>Title <span className='text-xs text-gray-700'>(Optional)</span></label>
+                    <input type="text" name="title" id="title" value={title} placeholder='Type main heading to display' className='w-full text-sm !p-2.5 bg-white border border-gray-300 !rounded-none' onChange={e => setTitle(e.target.value)} />
+                </div>
+                <div className='mb-4'>
+                    <label className='block mb-3 text-sm font-bold text-gray-900'>Subtitle <span className='text-xs text-gray-700'>(Optional)</span></label>
+                    <input type="text" name="subtitle" id="subtitle" value={subtitle} placeholder='Type subtitle to display' className='w-full text-sm !p-2.5 bg-white border border-gray-300 !rounded-none' onChange={e => setSubtitle(e.target.value)} />
+                </div>
+                <div className='mb-4'>
+                    <label className='block mb-3 text-sm font-bold text-gray-900'>CTA Link <span className='text-xs text-gray-700'>(Optional)</span></label>
+                    <input type="text" name="cta" id="cta" value={cta} placeholder='Paste link where you want to redirect' className='w-full text-sm !p-2.5 bg-white border border-gray-300 !rounded-none' onChange={e => setCTA(e.target.value)} />
+                </div>
+
+                {/* Image Upload */}
+                <div>
+                    <label className='block mb-3 text-sm font-bold text-gray-900'>
+                        Image <span className='text-xs text-gray-700'>(Optional)</span>
+                        <span className='text-xs font-normal ml-1'>(Recommended: 1500 x 653)</span>
+                    </label>
+                    <input
+                        type="file"
+                        name="image"
+                        id="image"
+                        accept="image/png,image/jpeg,image/webp"
+                        className='w-full text-sm !p-2.5 bg-white border border-gray-300 cursor-pointer !rounded-none'
+                        onChange={handleImageChange}
+                    />
+                    {preview &&
+                        <img src={preview} alt="preview" className='w-[200px] h-[120px] object-contain mt-4 border border-gray-200' />
+                    }
+                </div>
+
+                {/* Video Upload */}
+                <div>
+                    <label className='block mb-3 text-sm font-bold text-gray-900'>
+                        Video <span className='text-xs text-gray-700'>(Optional)</span>
+                        <span className='text-xs font-normal ml-1'>(Max size: 50MB)</span>
+                    </label>
+                    <input
+                        type="file"
+                        name="video"
+                        id="video"
+                        accept="video/mp4,video/webm,video/ogg"
+                        className='w-full text-sm !p-2.5 bg-white border border-gray-300 cursor-pointer !rounded-none'
+                        onChange={handleVideoChange}
+                    />
+                    {videoPreview &&
+                        <video
+                            src={videoPreview}
+                            controls
+                            className='w-[200px] h-[120px] object-contain mt-4 border border-gray-200'
+                        />
+                    }
+                </div>
+
+                <button
+                    className='w-fit px-4 py-2 text-xs bg-[var(--primary)] text-white rounded-md mt-4 transition-all duration-200 ease-out hover:opacity-70'
+                    disabled={loading}
+                    onClick={handleAddSlide}
+                >
+                    {!loading ? 'Add Slide' : <ButtonLoader />}
+                </button>
+            </div>
+
+            <div className='overflow-x-auto mt-6'>
+                <table className='min-w-full text-sm border border-gray-200'>
+                    <thead className='text-xs text-[var(--secondary)] bg-[var(--secondary)]/10'>
+                        <tr>
+                            <th className='px-4 py-2 border-b border-gray-200 text-left'>#</th>
+                            <th className='px-4 py-2 border-b border-gray-200'>Image</th>
+                            <th className='px-4 py-2 border-b border-gray-200'>Video</th>
+                            <th className='px-4 py-2 border-b border-gray-200'>Title</th>
+                            <th className='px-4 py-2 border-b border-gray-200'>Subtitle</th>
+                            <th className='px-4 py-2 border-b border-gray-200 whitespace-nowrap'>CTA Link</th>
+                            <th className='px-4 py-2 border-b border-gray-200 text-end'>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {heroSlider.length > 0 ? (
+                            heroSlider.map((slide, index) => (
+                                <tr key={index} className='text-xs'>
+                                    <td className='px-4 py-2 border-b border-gray-200 text-left'>{index + 1}</td>
+
+                                    {/* Image cell */}
+                                    <td className='px-4 py-2 border-b border-gray-200 text-center'>
+                                        {slide.image
+                                            ? <Image
+                                                src={slide.image}
+                                                alt={"slide" + index}
+                                                style={{ width: 50, height: 50, objectFit: 'contain', margin: '0 auto' }}
+                                            />
+                                            : <span className='text-gray-400'>_</span>
+                                        }
+                                    </td>
+
+                                    {/* Video cell */}
+                                    <td className='px-4 py-2 border-b border-gray-200 text-center'>
+                                        {slide.video
+                                            ? <video
+                                                src={slide.video}
+                                                controls
+                                                style={{ width: 60, height: 50, objectFit: 'contain', margin: '0 auto' }}
+                                            />
+                                            : <span className='text-gray-400'>_</span>
+                                        }
+                                    </td>
+
+                                    <td className='px-4 py-2 border-b border-gray-200 text-gray-700 text-center'>
+                                        {slide.title ? <p>{slide.title}</p> : '_'}
+                                    </td>
+                                    <td className='px-4 py-2 border-b border-gray-200 text-gray-700 text-center'>
+                                        {slide.subtitle ? <p>{slide.subtitle}</p> : '_'}
+                                    </td>
+                                    <td className='px-4 py-2 border-b border-gray-200 text-blue-600 underline text-center'>
+                                        {slide.ctaLink ? <a href={slide.ctaLink} target="_blank" rel="noreferrer">{slide.ctaLink}</a> : '_'}
+                                    </td>
+                                    <td className='px-4 py-2 border-b border-gray-200 text-center'>
+                                        <div className='flex justify-end'>
+                                            {deleting === index
+                                                ? <div className='w-6 h-6 border-t border-[var(--primary)] rounded-full animate-spin'></div>
+                                                : <Trash2 size={16} className='text-red-500 cursor-pointer hover:opacity-80' onClick={() => handleDeleteSlide(index)} />
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="7" className='p-3 text-center text-gray-500'>
+                                    No slides added yet
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+>>>>>>> upstream/main
         </div>
         <div className="mb-4">
           <label className="block mb-3 text-sm font-bold text-gray-900">

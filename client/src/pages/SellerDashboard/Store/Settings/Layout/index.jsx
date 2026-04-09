@@ -28,49 +28,14 @@ const initialState = {
 };
 
 const styles = [
-  {
-    key: "style1",
-    title: "Classic",
-    desc: "Sharp edges",
-    rounded: "rounded-none",
-  },
-  {
-    key: "style2",
-    title: "Modern",
-    desc: "Rounded edges",
-    rounded: "rounded-3xl",
-  },
-  {
-    key: "style3",
-    title: "Emarald",
-    desc: "Smooth feel",
-    rounded: "rounded-3xl",
-  },
-  {
-    key: "jewellery",
-    title: "Jewellery",
-    desc: "Premium Feel",
-    rounded: "rounded-none",
-  },
-  {
-    key: "fashion",
-    title: "Fashion",
-    desc: "Modern Look",
-    rounded: "rounded-none",
-  },
-  {
-    key: "premium",
-    title: "Premium",
-    desc: "Exclusive Design",
-    rounded: "rounded-4xl",
-  },
-  {
-    key:'tools',
-    title:'Tools',
-    desc:'for tools and machinery stores', 
-    rounded:'rounded-none'
-  }
-
+  { key: "style1", title: "Classic", desc: "Sharp edges", rounded: "rounded-none" },
+  { key: "style2", title: "Modern", desc: "Rounded edges", rounded: "rounded-3xl" },
+  { key: "style3", title: "Emarald", desc: "Smooth feel", rounded: "rounded-3xl" },
+  { key: "jewellery", title: "Jewellery", desc: "Premium Feel", rounded: "rounded-none" },
+  { key: "fashion", title: "Fashion", desc: "Modern Look", rounded: "rounded-none" },
+  { key: "luxury", title: "Luxury", desc: "Different look", rounded: "rounded-2xl" },
+  { key: "premium", title: "Premium", desc: "Exclusive Design", rounded: "rounded-4xl" },
+  { key: "tools", title: "Tools", desc: "for tools and machinery stores", rounded: "rounded-none" }
 ];
 
 
