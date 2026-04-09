@@ -148,7 +148,7 @@ export default function ProductBoxPremium({
           ? `/product/${item.slug}`
           : `/brand/${settings.brandSlug}/product/${item.slug}`
       }
-      className="group relative  h-[300px] rounded-lg   overflow-hidden block outline-none"
+      className="group relative h-[350px]  rounded-lg   overflow-hidden block outline-none"
     >
       <div className="relative w-full  h-[70%] rounded-xl overflow-hidden ">
         {loading && <div className="absolute inset-0 animate-pulse " />}
@@ -223,7 +223,7 @@ export default function ProductBoxPremium({
           <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 origin-left transform scale-x-0 transition-transform duration-300 group-hover/item:scale-x-100"></span>
         </p>
         <div className="flex flex-row items-center gap-2 mt-2">
-          <span className="text-gray-700 font-bold text-sm sm:text-base">
+          <span className="text-blue-700 font-bold text-md sm:text-lg">
             {settings.content.currency} {item.price.toLocaleString()}
           </span>
           <span className="text-xl text-gray-700 ">{item.comparedPrice}</span>

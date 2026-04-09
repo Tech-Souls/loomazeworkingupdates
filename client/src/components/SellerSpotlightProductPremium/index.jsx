@@ -38,7 +38,6 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
 
   useEffect(() => {
     fetchSpotlightProduct();
-    console.log('hyhy')
   }, [settings ]);
 
  
@@ -199,7 +198,8 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
     product?.comparedPrice && product.comparedPrice > product.price;
 
   return (
-    <div className="w-full mt-20 p-10  text-white">
+    <div className="w-full mt-15  p-10 font-[Inter]
+     text-white">
       {product ? (
         <div className="flex w-full h-full flex-wrap  relative items-start justify-center gap-5">
           <div className="flex items-center absolute -top-25 left-5 justify-center w-50 h-50">
@@ -224,7 +224,7 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
               <SpotlightProductCounter saleEndDate={saleEndDate} />
             </div>
 
-            <h1>{product.title}</h1>
+            <h1 className="text-4xl font-semibold">{product.title}</h1>
 
             <div className="flex items-center gap-3">
               {showComparedPrice && (
@@ -232,7 +232,7 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
                   {settings?.content?.currency} {product.comparedPrice}
                 </p>
               )}
-              <p className="text-2xl font-bold text-blue-600">
+              <p className="text-2xl font-bold text-[#E74133]">
                 {settings?.content?.currency} {product.price}
               </p>
             </div>
@@ -266,12 +266,12 @@ function SellerSpotlightProductPremium({ settings, storeSettings }) {
               <button
                 onClick={handleAddToCart}
                 disabled={adding}
-                className="block relative overflow-hidden   rounded-lg h-10 group border transition-colors duration-300 hover:bg-black border-black font-semibold  lg:w-60 mx-auto"
+                className="block relative overflow-hidden   rounded-lg h-12 group  transition-colors duration-300 hover:bg-black font-semibold  lg:w-60 mx-auto"
               >
-                <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center transition-all duration-75 top-0  bg-transparent  font-semibold  text-black text-center ">
+                <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center transition-all duration-75 top-0   bg-[#304FFE]  font-semibold  text-white text-center ">
                   Add to Cart
                 </span>
-                <span className=" w-full h-full flex bg-transparent  items-center justify-center  absolute left-0 top-50 transition-all  duration-300 ease-in-out group-hover:top-0 font-semibold  text-white text-center ">
+                <span className=" w-full h-full flex bg-black  items-center justify-center  absolute left-0 top-50 transition-all  duration-300 ease-in-out group-hover:top-0 font-semibold  text-white text-center ">
                   Add to Cart
                 </span>
               </button>

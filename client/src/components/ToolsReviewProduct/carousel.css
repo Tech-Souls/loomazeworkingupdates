@@ -1,0 +1,42 @@
+/* Swiper Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none;
+}
+
+/* Ensure swiper container allows absolute positioning */
+.swiper {
+  position: relative;
+  overflow: visible;
+}
+
+/* Swiper Pagination Dots */
+.swiper-pagination {
+  position: absolute !important;
+  bottom: 5px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  z-index: 20!important;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #da9086;
+  opacity: 1;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #E53935;
+  width: 32px;
+  border-radius: 6px;
+}
+
+.swiper-pagination-bullet:hover {
+  background-color: #E53935;
+}

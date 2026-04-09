@@ -88,6 +88,9 @@ export default function PlatformHeader({ settings, isCustomDomain, themeType }) 
 
     return (
         <>
+            <header className='flex justify-between  items-center gap-8 px-3 sm:px-8 py-2 sm:py-3 lg:py-3.5 shad'>
+                <div className='flex items-center gap-8'>
+                    <h1 role='button' className='uppercase text-4xl font-[Poppins-Bold] md:text-2xl cursor-pointer'
             {/* ================= HEADER ================= */}
             <header
                 className={`fixed flex justify-between items-center gap-8 px-4 sm:px-8 py-4 w-full z-50 transition-all duration-300 ${headerBg}`}

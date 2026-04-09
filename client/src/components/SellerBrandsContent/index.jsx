@@ -76,6 +76,7 @@ function SellerBrandsContent({ user, settings, setSettings }) {
 
   return (
     <div className="w-full mt-10 p-5 border border-gray-400">
+      <h1> Brand Icons</h1>
       <div className="w-full h-full   flex items-center justify-between">
         <input
           onChange={(e) => setBrandIcons(e.target.files[0])}

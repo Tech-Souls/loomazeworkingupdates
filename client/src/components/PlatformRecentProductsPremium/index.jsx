@@ -33,16 +33,24 @@ export default function PlatformRecentProductsPremium({
   };
 
   return (
-    <section className="relative main-container min-h-[650px] px-4 pt-8 pb-20">
-      <div className="mb-10">
-        <h1 className="text-2xl text-gray-900 text-center mb-2 font-bold">
+    <section className="relative font-[Inter] main-container min-h-[650px] mt-[20px] px-4 pt-8 pb-20">
+      <div className="mb-10 flex items-center justify-center flex-col gap-3">
+        <p className="text-lg  text-[#304ffe] text-center mb-2 font-bold">
           Lastest Products
+        </p>
+        <h1 className="text-5xl font-semibold text-gray-800">
+          Fresh Picks. Infinite Style.
         </h1>
+        <p className="text-lg">
+          Just Landed: The exclusive drop you’ve been waiting for.
+        </p>
       </div>
 
-      <div className="grid gap-3 lg:gap-6 
+      <div
+        className="grid gap-3 lg:gap-6 
   grid-cols-[repeat(auto-fit,minmax(150px,1fr))] 
-  sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+  sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
+      >
         {loading ? (
           <p>Loading...</p>
         ) : !loading && products.length > 0 ? (
@@ -66,9 +74,9 @@ export default function PlatformRecentProductsPremium({
             : `/brand/${storeSettings.brandSlug}/pages/products`
         }
         target="_blank"
-        className="block relative overflow-hidden  mt-10 rounded-lg h-10 group border transition-colors duration-300 hover:bg-black border-black font-semibold  lg:w-60 mx-auto  "
+        className="block relative overflow-hidden  mt-10 rounded-lg h-10 group border transition-colors duration-300 hover:bg-[#304FFE] border-[#304FFE] font-semibold  lg:w-80 mx-auto  "
       >
-        <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center transition-all duration-75  bg-transparent  font-semibold  text-black text-center ">
+        <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center transition-all duration-75  bg-transparent  font-semibold  text-[#304FFE] text-center ">
           Shop All
         </span>
         <span className=" w-full h-full flex bg-transparent  items-center justify-center  absolute left-0 top-10 transition-all  duration-300 ease-in-out group-hover:top-0 font-semibold  text-white text-center ">

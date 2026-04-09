@@ -149,29 +149,34 @@ export default function SelllerStripperContent({
       </div>
 
       <p className="text-sm text-gray-900 font-bold mt-4 mb-2">Stripper Text</p>
-      <div className="flex flex-col items-start justify-center gap-2">
+      <div className="flex flex-col items-start justify-center gap-3">
         {topStripperText.map((elem, i) => (
           <div
             key={elem._id}
-            className="min-w-1/4 px-5 flex h-10 items-center  justify-between gap-4"
+            className="w-full rounded-xl  px-4 py-3 text-black flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
           >
-            <p className="text-sm text-gray-800">
-              {i + 1}. {elem.text}
-            </p>
-            <img
-              className="h-full w-15 object-cover"
-              src={elem.imageURL}
-              alt=""
-            />
-            {!deletionLoading ? (
-              <Trash2
-                size={16}
-                className="text-red-500 cursor-pointer hover:opacity-70"
-                onClick={() => handleDeleteStripper(elem._id)}
+            <div className="min-w-0 flex items-center gap-3">
+              <span className="text-sm text-gray-900 flex-shrink-0">{i + 1}.</span>
+              <p className="text-sm text-black min-w-0 break-words truncate">
+                {elem.text}
+              </p>
+            </div>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <img
+                className="h-12 w-12 rounded-lg object-cover flex-shrink-0"
+                src={elem.imageURL}
+                alt="Stripper"
               />
-            ) : (
-              <span className="w-6 h-6 border-t border-red-500 rounded-full animate-spin"></span>
-            )}
+              {!deletionLoading ? (
+                <Trash2
+                  size={18}
+                  className="text-red-500 cursor-pointer hover:opacity-70"
+                  onClick={() => handleDeleteStripper(elem._id)}
+                />
+              ) : (
+                <span className="w-6 h-6 border-t border-red-500 rounded-full animate-spin"></span>
+              )}
+            </div>
           </div>
         ))}
       </div>
