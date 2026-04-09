@@ -196,7 +196,7 @@ function ToolsProductBox({item,idx, settings, isCustomDomain}) {
         </p>
     
         <div className="flex flex-row items-center gap-2 mt-2">
-          <span className="text-gray-700 font-bold text-sm sm:text-base">
+          <span className=" font-[bebas-neue] text-3xl text-[#E53935]  ">
             {settings.content.currency} {item.price.toLocaleString()}
           </span>
           <span className="text-xl text-gray-700 ">{item.comparedPrice}</span>

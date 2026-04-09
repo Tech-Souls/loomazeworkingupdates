@@ -4,7 +4,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 export default function PlatformExplorePremium({ settings, isCustomDomain }) {
   return (
-    <section className="px-4 sm:px-8 py-2 md:px-16 pb-10 sm:pb-16 md:pb-20">
+    <section className="px-4 sm:px-8  py-2  pb-10 sm:pb-16 md:pb-20">
       <div className="rounded-[24px] group relative overflow-hidden bg-white cursor-pointer">
         {/* Image */}
         <div className="relative w-full h-full overflow-hidden">

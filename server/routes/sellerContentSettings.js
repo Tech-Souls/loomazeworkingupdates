@@ -239,6 +239,7 @@ router.post(
   "/hero-slider/add/:sellerID",
   upload.single("image"),
   async (req, res) => {
+    
     try {
       const { sellerID } = req.params;
       const { ctaLink, title, subtitle } = req.body;

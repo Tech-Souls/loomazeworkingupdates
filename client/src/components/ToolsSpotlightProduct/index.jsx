@@ -45,7 +45,7 @@ function ToolsSpotlightProduct({ settings, storeSettings }) {
   // --- Spotlight Badge ---
   const SpotlightBadge = () => (
     <div className="absolute w-32 h-32">
-      <div className="absolute inset-0 rounded-full bg-blue-600 flex items-center justify-center">
+      <div className="absolute inset-0 rounded-full bg-gray-200 flex items-center justify-center">
         <svg
           viewBox="0 0 100 100"
           className="absolute inset-0 p-2 w-full h-full"
@@ -60,20 +60,20 @@ function ToolsSpotlightProduct({ settings, storeSettings }) {
             className="animate-spin origin-center"
             style={{ animationDuration: "6s" }}
           >
-            <text className="fill-white text-[12px] font-bold tracking-wider">
+            <text className="fill-gray-800 text-[12px] font-bold tracking-wider">
               <textPath href="#circlePath" startOffset="10%" textAnchor="start">
                 GETup 20% OFF 
               </textPath>
             </text>
-            <text className="fill-white text-[12px] font-bold tracking-wider">
+            <text className="fill-gray-800 text-[12px] font-bold tracking-wider">
               <textPath href="#circlePath" startOffset="55%" textAnchor="start">
                 GETup 20% OFF 
               </textPath>
             </text>
           </g>
         </svg>
-        <div className="relative w-16 h-16 rounded-full bg-blue-700 flex items-center justify-center">
-          <ThumbsUp className="w-8 h-8 text-white" />
+        <div className="relative w-18 h-18 rounded-full bg-[#E53935] flex items-center justify-center">
+          <ThumbsUp className="w-10 h-10 -rotate-30 text-white" />
         </div>
       </div>
     </div>
@@ -181,7 +181,7 @@ function ToolsSpotlightProduct({ settings, storeSettings }) {
     product?.comparedPrice && product.comparedPrice > product.price;
 
   return (
-    <div className="w-full mt-20 p-10 h-screen text-white bg-[#E53935]">
+    <div className="w-full mt-15 font-[roboto-condensed] p-10 h-screen text-white bg-[#E53935]">
       {product ? (
         <div className="flex w-full h-full flex-wrap   relative items-start justify-center gap-5">
           <div className="flex items-center absolute -top-15 left-5 justify-center w-50 h-50">
@@ -203,7 +203,7 @@ function ToolsSpotlightProduct({ settings, storeSettings }) {
           <div className="lg:w-[45%] w-full h-full p-5 flex flex-col gap-5">
         
 
-            <h1 className="text-4xl tracking-tight font-bold capitalize">{product.title}</h1>
+            <h1 className="text-6xl font-[bebas-neue] capitalize">{product.title}</h1>
 
             <div className="flex items-center text-4xl gap-3">
               {showComparedPrice && (
@@ -211,7 +211,7 @@ function ToolsSpotlightProduct({ settings, storeSettings }) {
                   {settings?.content?.currency} {product.comparedPrice}
                 </p>
               )}
-              <p className="text-4xl font-black text-white">
+              <p className="text-6xl  font-[bebas-neue]  text-white">
                 {settings?.content?.currency} {product.price}
               </p>
             </div>
@@ -229,13 +229,13 @@ function ToolsSpotlightProduct({ settings, storeSettings }) {
               <button
                 onClick={handleAddToCart}
                 disabled={adding}
-                className="block relative overflow-hidden text-lg  rounded-lg  group  transition-colors duration-300 hover:bg-gray-200  font-semibold  h-full lg:w-[80%]"
+                className="block relative overflow-hidden  rounded-lg  group  transition-colors duration-300 hover:bg-gray-200  text-2xl  h-full lg:w-[80%]"
               >
-                <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center gap-2 transition-all duration-75 top-0  bg-gray-500  font-semibold  text-white text-center ">
-                 <ShoppingBag size={'18px'}/> Add to Cart
+                <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center gap-2 transition-all duration-75 top-0 font-[bebas-neue] bg-gray-500  text-white text-center ">
+                 <ShoppingBag size={'20px'}/> Add to Cart
                 </span>
-                <span className=" w-full h-full flex bg-gray-200 text-gray-600  items-center justify-center  absolute left-0 top-50 transition-all  duration-300 ease-in-out group-hover:top-0 font-semibold gap-2  text-center ">
-                 <ShoppingBag size={'18px'}/>  Add to Cart
+                <span className=" w-full h-full flex bg-gray-200 text-gray-600  items-center justify-center  absolute left-0 top-50 transition-all  duration-300 ease-in-out group-hover:top-0 font-[bebas-neue] gap-2  text-center ">
+                 <ShoppingBag size={'20px'}/>  Add to Cart
                 </span>
               </button>
 

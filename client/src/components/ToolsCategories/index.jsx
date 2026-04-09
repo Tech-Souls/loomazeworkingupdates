@@ -75,12 +75,12 @@ useEffect(() => {
 
 
   return (
-    <section className="w-full relative flex flex-col mb-10 items-start gap-5  min-h-[80vh] px-5">
+    <section className="w-full relative font-[roboto-condensed] flex flex-col mt-15 items-start gap-5  min-h-[80vh] px-5">
       <div className="w-full flex items-center  justify-center flex-col gap-5">
-        <h1 className="text-[#E53935] text-xl font-bold text-center">
+        <h1 className="text-[#E53935] text-2xl font-bold text-center">
           Shop By Cateories
         </h1>
-        <h1 className="text-slate-900 text-5xl tracking-tight font-bold text-center">
+        <h1 className="text-slate-900 font-[bebas-neue] uppercase  text-6xl font-normal  text-center">
           Popular Categories
         </h1>
         <p className="text-lg text-gray-600 text-center">
@@ -88,7 +88,7 @@ useEffect(() => {
         </p>
       </div>
       
-    <div className="w-full h-full mt-10 grid  lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 p-2 gap-6">
+    <div className="w-full h-full  grid  lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 p-2 gap-6">
         {
             categories.map((item)=>{
                 return (
@@ -103,7 +103,7 @@ useEffect(() => {
                         >
                     <div key={item._id} className="w-full group  relative h-80 rounded-lg overflow-hidden bg-blue-700">
                         <img src={item.imageURL} alt={item.name} className="w-full cursor-pointer group-hover:scale-120 transition-all duration-300 h-full object-cover"/>
-                        <h1 className="absolute bottom-5 w-[90%] flex items-center justify-start px-5 left-1/2 h-15 bg-gray-500/20 backdrop-blur-2xl capitalize group-hover:bg-[#E53935]/60 transform -translate-x-1/2  right-0 cursor-pointer  text-white text-center py-2">
+                        <h1 className="absolute bottom-5 w-[90%] flex items-center justify-start px-5 left-1/2 h-15 bg-gray-500/20 backdrop-blur-2xl capitalize group-hover:bg-[#E53935]/60 transform -translate-x-1/2  right-0 cursor-pointer text-3xl font-[bebas-neue] text-white text-center py-2">
                           {item.name}
                         </h1>
                     </div> </a>

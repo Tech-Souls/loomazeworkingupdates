@@ -9,6 +9,18 @@
     font-family: 'Poppins-Regular';
     src: url(./assets/fonts/Poppins-Regular.ttf);
 }
+@font-face {
+  font-family: bebas-neue;
+  src: url(./assets/fonts/BebasNeue-Regular.ttf);
+}
+@font-face {
+  font-family: roboto-condensed;
+  src: url(./assets/fonts/RobotoCondensed-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: Inter;
+  src: url(./assets/fonts/Inter-VariableFont_opsz\,wght.ttf);
+}
 
 @theme{
     --color-primary: #F36734;
@@ -33,12 +45,9 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Poppins-Regular', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    font-family: 'Poppins-Bold', sans-serif;
-}
+
 
 input {
     padding: 16px;

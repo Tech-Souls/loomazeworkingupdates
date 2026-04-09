@@ -30,7 +30,7 @@ export default function PlatformCategoriesPremium({
       }
       target="_blank"
       rel="noopener noreferrer"
-      className={`block h-full group `}
+      className={`block h-full group  font-[Inter]`}
     >
       <div className="relative w-full h-full overflow-hidden rounded-2xl">
         <img
@@ -64,38 +64,46 @@ export default function PlatformCategoriesPremium({
       .finally(() => setLoading(false));
   };
   return (
-    <section className="section-categories py-10 sm:py-14">
-      <div className="main-container mx-auto px-4 relative">
-        <div className="flex justify-center text-center items-center mb-8 sm:mb-10 md:mb-15 gap-4">
-          <h2 className="head  text-[var(--text)] font-bold text-xl sm:text-2xl md:text-3xl">
-            Shop by Category
-          </h2>
-        </div>
-
+    <section className="section-categories  ">
+      <div className="main-container  relative">
         {!loading && categories.length === 0 && (
           <p className="text-red-500">No category found!</p>
         )}
 
-        {!loading && categories.length > 6 ? (
-         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:grid-rows-2 lg:h-[600px]">
+        {/* Grid for 6 or fewer categories */}
+        {!loading && categories.length > 0 && categories.length <= 6 && (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {categories.map((cat, idx) => (
+              <CategoryCard cat={cat} key={cat._id || idx} />
+            ))}
+          </div>
+        )}
 
-  <CategoryCard cat={categories[0]} />
+        {/* Custom grid for exactly 6 categories (original design) */}
+        {!loading && categories.length === 6 && (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:grid-rows-2 lg:h-[600px]">
+            <CategoryCard cat={categories[0]} />
+            <div className="lg:row-span-2">
+              <CategoryCard cat={categories[1]} />
+            </div>
+            <CategoryCard cat={categories[2]} />
+            <CategoryCard cat={categories[3]} />
+            <CategoryCard cat={categories[4]} />
+            <div className="lg:col-span-2">
+              <CategoryCard cat={categories[5]} />
+            </div>
+          </div>
+        )}
 
-  <div className="lg:row-span-2">
-    <CategoryCard cat={categories[1]} />
-  </div>
-
-  <CategoryCard cat={categories[2]} />
-  <CategoryCard cat={categories[3]} />
-  <CategoryCard cat={categories[4]} />
-
-  <div className="lg:col-span-2">
-    <CategoryCard cat={categories[5]} />
-  </div>
-
-</div>
-        ) : (
-          " "
+        {/* Flex wrap/scroll for more than 6 categories */}
+        {!loading && categories.length > 6 && (
+          <div className="flex flex-wrap justify-center gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 py-6">
+            {categories.map((cat, idx) => (
+              <div key={cat._id || idx} className="min-w-[180px] flex-1">
+                <CategoryCard cat={cat} />
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </section>

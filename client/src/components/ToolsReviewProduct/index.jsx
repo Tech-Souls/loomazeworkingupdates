@@ -78,7 +78,7 @@ function ToolsReviewProduct({storeSettings}) {
     }, [storeSettings]);
 
   return (
-    <section className="w-full lg:h-80  p-5 my-15 relative">
+    <section className="w-full lg:h-80 font-[roboto-condensed] p-5 my-15 relative">
       <Swiper
         ref={swiperRef}
         modules={[Navigation, Pagination]}
@@ -113,10 +113,10 @@ function ToolsReviewProduct({storeSettings}) {
                     </svg>
                   ))}
                 </div>
-                <h1 className="text-3xl text-center font-bold tracking-tighter">
+                <h1 className="text-5xl text-gray-800 text-center font-[bebas-neue] ">
                   {item.title}
                 </h1>
-                <p className="text-lg text-gray-800 text-center w-[70%]">
+                <p className="text-xl text-gray-800 text-center w-[90%]">
                   {item.description}
                 </p>
                 <h6 className="text-lg font-bold">{item.user}</h6>

@@ -37,12 +37,13 @@ useEffect(() => {
     };
 
   return (
-    <section className="w-full relative flex flex-col mb-10 items-start gap-5  min-h-[80vh] px-5">
+    <section className="w-full relative font-[roboto-condensed] flex flex-col mt-15
+    \ items-start gap-5  min-h-[80vh] px-5">
       <div className="w-full flex items-center  justify-center flex-col gap-5">
-        <h1 className="text-[#E53935] text-xl font-bold text-center">
+        <h1 className="text-[#E53935] text-2xl font-bold text-center">
           Popular Products
         </h1>
-        <h1 className="text-slate-900 text-5xl tracking-tight font-bold text-center">
+        <h1 className="text-slate-900 font-[bebas-neue] text-6xl  font-normal text-center">
       Customer Favorites
         </h1>
         <p className="text-lg text-gray-600 text-center">
@@ -52,7 +53,7 @@ useEffect(() => {
         </p>
       </div>
       
-    <div className="w-full mt-10 px-2 relative">
+    <div className="w-full  px-2 relative">
       <Swiper
         ref={swiperRef}
         modules={[Pagination]}

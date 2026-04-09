@@ -32,14 +32,14 @@ const SpotlightProductCounter = ({ saleEndDate }) => {
   }, [saleEndDate]);
 
   return (
-    <div className="w-full flex items-center justify-between mt-5">
-      <div>{time.totalHours}</div>
+    <div className="w-full font-[Inter] text-lg font-semibold flex items-center justify-between mt-5">
+      <div className="w-15 h-15 bg-gray-300 p-5 flex items-center justify-center rounded-md">{time.totalHours}</div>
       <span>:</span>
-      <div>{time.h}</div>
+      <div className="w-15 h-15 bg-gray-300 p-5 flex items-center justify-center rounded-md">{time.h}</div>
       <span>:</span>
-      <div>{String(time.m).padStart(2, "0")}</div>
+      <div className="w-15 h-15 bg-gray-300 p-5 flex items-center justify-center rounded-md">{String(time.m).padStart(2, "0")}</div>
       <span>:</span>
-      <div>{String(time.s).padStart(2, "0")}</div>
+      <div className="w-15 h-15 bg-gray-300 p-5 flex items-center justify-center rounded-md">{String(time.s).padStart(2, "0")}</div>
     </div>
   );
 };

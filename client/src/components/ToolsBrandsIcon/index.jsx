@@ -34,20 +34,20 @@ useEffect(() => {
 
 
   return (
-    <section className="w-full min-h-[70vh] mt-10 ">
+    <section className="w-full min-h-[50vh] font-[roboto-condensed] mt-10 ">
         <div className="w-full flex items-center justify-center flex-col gap-5">
-            <h1 className="text-2xl font-bold text-[#e53935]">Brands</h1>
-            <h1 className="text-5xl tracking-tighter font-bold text-slate-900">World’s Leading Makes</h1>
-            <p className="text-lg font-bold text-gray-800 tracking-tight">Discover tools and equipment from the world’s top manufacturers.
+            <h1 className="text-3xl font-bold  text-[#e53935]">Brands</h1>
+            <h1 className="text-6xl  font-[bebas-neue] text-slate-700">World’s Leading Makes</h1>
+            <p className="text-lg  text-gray-600 tracking-tight">Discover tools and equipment from the world’s top manufacturers.
 
 </p>
         </div>
 
-        <div className="w-full flex items-center justify-center mt-10 gap-6 px-5  ">
+        <div className="w-full flex items-center justify-center mt-8 gap-6 px-5  ">
         {icons.map((item, i) => (
           <div
             key={i}
-            className="flex h-28 items-center justify-center rounded-3xl border border-slate-200 bg-white px-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+            className="flex w-35  h-35 hover:border hover:border-gray-800 border-gray-600 items-center justify-center rounded-lg bg-white px-6 shadow-sm transition duration-200  hover:shadow-lg"
           >
             <img
               className="h-16 w-16 object-contain"

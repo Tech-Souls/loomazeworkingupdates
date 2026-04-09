@@ -37,18 +37,21 @@ export default function PlatformFeaturedProductsPremium({
   };
 
   return (
-    <section className="relative main-container px-4 pt-8 pb-20">
-      <div className="mb-10">
-        <h1 className="text-2xl text-gray-900 text-center mb-2 font-bold">
-          Featured Products
+    <section className="relative main-container mt-20 font-[Inter] px-4 pt-8 ">
+      <div className="w-full flex items-center justify-center flex-col mb-10 gap-3">
+        <p className="text-lg text-blue-600 font-semibold">Bestsellers</p>
+        <h1 className="text-4xl text-gray-900 text-center mb-2 font-semibold">
+          Most-Loved Products
         </h1>
+        <p className="text-sm">Discover the top-rated and most popular picks that everyone’s talking about.
+
+
+</p>
       </div>
 
       {/* Slider OR Grid */}
       {products.length > 4 ? (
-        <div className="relative grid gap-3 lg:gap-6 
-  grid-cols-[repeat(auto-fit,minmax(150px,1fr))] 
-  sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+        <div className="relative   grid gap-3 lg:gap-6 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]  justify-center items-center">
           {products.map((item, idx) => (
             <ProductBoxPremium
               item={item}
@@ -75,9 +78,9 @@ export default function PlatformFeaturedProductsPremium({
       <a
         href={`/brand/${storeSettings.brandSlug}/pages/products`}
         target="_blank"
-        className="block relative overflow-hidden  mt-10 rounded-lg h-10 group border transition-colors duration-300 hover:bg-black border-black font-semibold  lg:w-60 mx-auto  "
+        className="block relative overflow-hidden  mt-5 rounded-lg h-10 group border transition-colors duration-300 hover:bg-[#304FFE] border-[#304FFE] font-semibold  lg:w-80 mx-auto  "
       >
-        <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center transition-all duration-75  bg-transparent  font-semibold  text-black text-center ">
+        <span className=" w-full -group-hover:top-10 absolute left-0 h-full flex items-center justify-center transition-all duration-75  bg-transparent  font-semibold  text-[#304FFE] text-center ">
           Shop All
         </span>
         <span className=" w-full h-full flex bg-transparent  items-center justify-center  absolute left-0 top-10 transition-all  duration-300 ease-in-out group-hover:top-0 font-semibold  text-white text-center ">
