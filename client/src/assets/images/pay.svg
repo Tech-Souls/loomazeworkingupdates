@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="74.4" viewBox="0 0 78 74.4">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f6f6f6;
+        filter: url(#filter);
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #fff;
+        strokeWidth: 2px;
+      }
+    </style>
+    <filter id="filter" x="1196.59" y="15764.3" width="78" height="74.4" filterUnits="userSpaceOnUse">
+      <feImage preserveAspectRatio="none" x="1196.59" y="15764.3" width="78" height="74.4" result="image" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNzgiIGhlaWdodD0iNzQuNCIgdmlld0JveD0iMCAwIDc4IDc0LjQiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50IiB5MT0iMTQuNjgzIiB4Mj0iNzgiIHkyPSI1OS43MTciIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYjA2YWIzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzQ1NjhkYyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNzgiIGhlaWdodD0iNzQuNCIvPgo8L3N2Zz4K"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path class="cls-1" d="M1226.6,15793.1l9.6-28.8,8.4,28.8h30l-22.8,16.8,8.4,28.8-24-18-24,18,8.4-28.8-24-16.8h30Z" transform="translate(-1196.59 -15764.3)"/>
+  <path class="cls-2" d="M1227.62,15802.1h17.03" transform="translate(-1196.59 -15764.3)"/>
+  <rect id="Rounded_Rectangle_828" data-name="Rounded Rectangle 828" class="cls-3" x="29.41" y="33.7" width="20.28" height="13.8" rx="2" ry="2"/>
+</svg>
